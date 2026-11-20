@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cultura Británica Córdoba</title>
+<link rel="icon" type="image/png" href="img/Logo Asociacion Argentina de cultura Britanica.jfif">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Plus+Jakarta+Sans:wght@400..700&display=swap">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#12254A;background:#F4F6FA}
+a{color:inherit;text-decoration:none}
+nav a:hover{color:#C8102E}
+.cta:hover{filter:brightness(1.08)}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(18,37,74,.12)}
+.card{transition:transform .2s ease,box-shadow .2s ease}
+button{font-family:inherit}
+:focus-visible{outline:3px solid #C8102E;outline-offset:2px}
+.foto-inicio{display:block;width:100%;aspect-ratio:5/4;max-width:100%;object-fit:cover;border-radius:28px;border:1px solid #C9D5EA;background:#DCE6F5}
+
+/* =====================================================================
+   MODAL DE PRE-INSCRIPCIÓN  (usa <dialog> nativo: foco atrapado,
+   se cierra con Esc y tiene fondo oscuro automático)
+   ===================================================================== */
+body.cb-lock{overflow:hidden}
+
+.cb-modal{
+  padding:0;border:0;border-radius:24px;
+  width:min(880px,calc(100% - 32px));
+  max-height:calc(100dvh - 32px);
+  background:#fff;color:#12254A;
+  box-shadow:0 30px 80px rgba(12,26,54,.45);
+  overflow:hidden;
+}
+.cb-modal[open]{display:flex;animation:cb-in .25s ease-out}
+.cb-modal::backdrop{background:rgba(12,26,54,.62);backdrop-filter:blur(3px)}
+@keyframes cb-in{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.cb-modal[open]{animation:none}}
+
+.cb-modal__panel{display:flex;flex-direction:column;width:100%;min-height:0}
+.cb-modal__head{
+  flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:26px clamp(20px,4vw,40px) 18px;
+  border-top:6px solid #12254A;border-bottom:1px solid #DCE3EF;background:#fff;
+}
+.cb-modal__title{
+  position:relative;margin:0;padding-bottom:12px;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:clamp(22px,3vw,28px);line-height:1.1;letter-spacing:-.01em;color:#12254A;
+}
+.cb-modal__title::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:4px;background:#C8102E}
+.cb-modal__close{
+  flex:0 0 auto;width:44px;height:44px;border-radius:50%;
+  border:1.5px solid #DCE3EF;background:#F4F6FA;color:#12254A;cursor:pointer;
+  display:grid;place-items:center;transition:background .15s,color .15s,border-color .15s;
+}
+.cb-modal__close:hover{background:#C8102E;border-color:#C8102E;color:#fff}
+.cb-modal__body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:8px clamp(20px,4vw,40px) 36px;overscroll-behavior:contain}
+
+/* ---------- Formulario ---------- */
+.cb-form{
+  --navy:#12254A;--navy-2:#1F3A78;--red:#C8102E;
+  --bg:#F4F6FA;--border:#D3DBEA;--text:#1F2937;--muted:#5B6781;
+  color:var(--text);line-height:1.5;
+}
+.cb-form *,.cb-form *::before,.cb-form *::after{box-sizing:border-box}
+.cb-note{margin:14px 0 4px;font-size:13px;color:var(--muted)}
+.cb-req{color:var(--red);margin-left:2px}
+
+.cb-form fieldset{border:0;margin:0;padding:0;min-width:0}
+.cb-form legend{
+  display:flex;align-items:center;gap:10px;width:100%;
+  margin:28px 0 16px;padding:0 0 8px;border-bottom:1.5px solid #DCE3EF;
+  font-size:16px;font-weight:700;color:var(--navy);
+}
+.cb-step{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;font-weight:700}
+
+.cb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px}
+.cb-full{grid-column:1/-1}
+.cb-field{display:flex;flex-direction:column}
+.cb-field label{margin-bottom:6px;font-size:14px;font-weight:600;color:var(--navy)}
+.cb-field input,.cb-field select,.cb-field textarea{
+  width:100%;height:48px;padding:0 14px;font:inherit;font-size:15px;color:var(--text);
+  background:var(--bg);border:1.5px solid var(--border);border-radius:10px;outline:none;
+  transition:border-color .15s,box-shadow .15s,background .15s;
+}
+.cb-field textarea{height:auto;min-height:120px;padding:12px 14px;resize:vertical}
+.cb-field input:hover,.cb-field select:hover,.cb-field textarea:hover{border-color:#B4BDD3}
+.cb-field input:focus,.cb-field select:focus,.cb-field textarea:focus{background:#fff;border-color:var(--navy);box-shadow:0 0 0 4px rgba(18,37,74,.13)}
+.cb-field select{
+  -webkit-appearance:none;appearance:none;padding-right:42px;cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2312254A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;background-position:right 16px center;
+}
+.cb-hint{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.cb-field input:user-invalid,.cb-field select:user-invalid,.cb-field textarea:user-invalid{border-color:var(--red);background:#FFF5F6}
+
+/* Honeypot (Formspree lo llama _gotcha) */
+.cb-hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+
+.cb-actions{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.cb-btn{
+  min-width:220px;height:52px;padding:0 36px;font:inherit;font-size:16px;font-weight:700;letter-spacing:.3px;
+  color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  border:0;border-radius:999px;cursor:pointer;box-shadow:0 8px 20px rgba(18,37,74,.28);
+  transition:transform .15s,box-shadow .15s,background .15s;
+}
+.cb-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(18,37,74,.35);background:linear-gradient(135deg,var(--red),#E0243F)}
+.cb-btn:active{transform:none}
+.cb-btn:disabled{opacity:.6;cursor:wait;transform:none}
+.cb-btn--ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:none}
+.cb-btn--ghost:hover{background:var(--navy);color:#fff;box-shadow:none}
+
+.cb-msg{display:none;margin-top:20px;padding:16px 18px;border-radius:12px;font-weight:600}
+.cb-msg.is-err{display:block;background:#FFF5F6;border:1px solid #F5C2C9;color:#9B1C2E}
+
+/* Pantalla de éxito */
+.cb-ok{display:none;text-align:center;padding:48px 8px 20px}
+.cb-ok.is-on{display:block}
+.cb-ok__icon{width:72px;height:72px;margin:0 auto 20px;border-radius:50%;background:#ECFDF3;border:2px solid #A7E3BD;display:grid;place-items:center}
+.cb-ok h3{margin:0 0 10px;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;color:var(--navy)}
+.cb-ok p{margin:0 auto 26px;max-width:460px;font-size:16px;line-height:1.6;color:#3D4C6B}
+
+/* ---------- Eventos (usa el mismo modal) ---------- */
+.ev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:22px}
+.ev-card{display:flex;flex-direction:column;min-width:0;background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
+.ev-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(18,37,74,.12)}
+.ev-media{display:block;background:#DCE6F5;aspect-ratio:4/3;overflow:hidden}
+.ev-media img{display:block;width:100%;height:100%;object-fit:cover}
+.ev-media--duo{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.ev-body{display:flex;flex-direction:column;gap:10px;padding:20px 22px 22px;flex:1}
+.ev-tag{align-self:flex-start;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#12254A}
+.ev-title{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:21px;font-weight:700;line-height:1.15;color:#12254A}
+.ev-text{margin:0;font-size:14.5px;line-height:1.55;color:#3D4C6B}
+.ev-link{margin-top:auto;padding-top:6px;font-size:14px;font-weight:700;color:#C8102E}
+.ev-link:hover{text-decoration:underline}
+
+@media (max-width:720px){
+  .cb-modal{width:100%;max-width:100%;height:100dvh;max-height:100dvh;border-radius:0}
+  .cb-grid{grid-template-columns:1fr}
+  .cb-btn{width:100%}
+}
+</style>
+</head>
+<body>
+<div style="width:100%;background:#F4F6FA">
+
+  <!-- Barra superior -->
+  <div style="background:#12254A;color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:10px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:13px">
+      <span>Inscripciones 2027 abiertas · Pre-inscripción online</span>
+      <span style="display:flex;gap:20px;flex-wrap:wrap"><a href="https://culturabritanicacba.org.ar/project/pago-online/">Pago online</a><a href="https://culturabritanicacba.org.ar/project/informacion-importante/">Información importante</a></span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header style="background:#fff;border-bottom:1px solid #DCE3EF">
+    <div style="max-width:1240px;margin:0 auto;padding:18px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between">
+      <a href="https://culturabritanicacba.org.ar/" style="display:flex;align-items:center;gap:12px">
+        <span style="width:44px;height:44px;border-radius:10px;background:#12254A;display:flex;align-items:center;justify-content:center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="11" y="2" width="4" height="22" fill="#fff"></rect><rect x="2" y="11" width="22" height="4" fill="#fff"></rect><rect x="11.8" y="2" width="2.4" height="22" fill="#C8102E"></rect><rect x="2" y="11.8" width="22" height="2.4" fill="#C8102E"></rect></svg>
+        </span>
+        <span style="display:flex;flex-direction:column;line-height:1.1">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px">Cultura Británica</span>
+          <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#4A5878">Córdoba · Asociación Argentina</span>
+        </span>
+      </a>
+      <nav aria-label="Principal" style="display:flex;flex-wrap:wrap;gap:6px 26px;font-size:15px;font-weight:500">
+        <a href="https://culturabritanicacba.org.ar/institucional/">Institucional</a>
+        <a href="https://culturabritanicacba.org.ar/aprende-ingles/">Aprendé inglés</a>
+        <a href="https://culturabritanicacba.org.ar/convenios/">Convenios</a>
+        <a href="https://culturabritanicacba.org.ar/beneficios/">Beneficios</a>
+        <a href="https://culturabritanicacba.org.ar/biblioteca/">Biblioteca</a>
+        <a href="#eventos" data-abrir-eventos>Eventos</a>
+      </nav>
+      <a class="cta" href="https://culturabritanicacba.org.ar/contacto/" style="padding:12px 22px;border-radius:999px;background:#C8102E;color:#fff;font-weight:600;font-size:14px">Contacto</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="max-width:1240px;margin:0 auto;padding:72px clamp(16px,4vw,48px) 56px;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px">
+      <span style="align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Más de 85 años enseñando inglés en Córdoba</span>
+      <h1 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em;text-wrap:balance">Inglés para hablar, rendir y crecer.</h1>
+      <p style="margin:0;font-size:19px;line-height:1.6;color:#3D4C6B;max-width:560px">Cursos para niños, jóvenes y adultos, exámenes internacionales de Cambridge e IELTS y capacitación para empresas.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px">
+        <!-- data-abrir-form: abre el formulario en una ventana (modal) -->
+        <a class="cta" href="#preinscripcion" data-abrir-form style="padding:16px 28px;border-radius:999px;background:#C8102E;color:#fff;font-weight:700;font-size:16px;display:inline-flex;gap:10px;align-items:center">Pre-inscripción 2027
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <a class="cta" href="https://culturabritanicacba.org.ar/aprende-ingles/" style="padding:14px 26px;border-radius:999px;border:2px solid #12254A;color:#12254A;font-weight:700;font-size:16px">Ver cursos</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
+        <span style="padding:7px 14px;border-radius:999px;background:#FFE9A8;font-size:13px;font-weight:600">Niños</span>
+        <span style="padding:7px 14px;border-radius:999px;background:#CFE3FF;font-size:13px;font-weight:600">Jóvenes</span>
+        <span style="padding:7px 14px;border-radius:999px;background:#DDE7F7;font-size:13px;font-weight:600">Adultos</span>
+        <span style="padding:7px 14px;border-radius:999px;background:#FBD5DB;font-size:13px;font-weight:600">Cambridge · IELTS</span>
+        <span style="padding:7px 14px;border-radius:999px;background:#E6DFF5;font-size:13px;font-weight:600">Empresas</span>
+      </div>
+    </div>
+    <div style="flex:1 1 380px;min-width:0;position:relative">
+      <!-- ============================================================
+           AQUÍ VA LA FOTO O EL VIDEO DEL INICIO
+           Opción 1 (foto): cambiá el src por la ruta de tu imagen.
+           Opción 2 (video): borrá la línea <img ...> y sacá los
+           comentarios de la línea <video ...> de abajo.
+           ============================================================ -->
+      <img src="img/Logo Asociacion Argentina de cultura Britanica.jfif" alt="Alumnos en clase en Cultura Británica" class="foto-inicio">
+      <!-- <video src="video/promo.mp4" poster="img/foto-inicio.jpg" autoplay muted loop playsinline class="foto-inicio"></video> -->
+      <div style="position:absolute;left:-12px;bottom:28px;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 12px 30px rgba(18,37,74,.16);display:flex;gap:12px;align-items:center;max-width:calc(100% - 24px)">
+        <span style="width:40px;height:40px;border-radius:50%;background:#C8102E;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px">85+</span>
+        <span style="font-size:14px;line-height:1.3;font-weight:600">años de trayectoria<br><span style="font-weight:400;color:#4A5878">en la ciudad de Córdoba</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accesos rápidos -->
+  <section style="max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 72px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <a class="card" href="#preinscripcion" data-abrir-form style="background:#12254A;color:#fff;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0">
+        <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9FB4DC;font-weight:700">Ciclo 2027</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:700;line-height:1.1">Formulario de pre-inscripción</span>
+        <span style="color:#C9D5EA;font-size:15px;line-height:1.5">Reservá tu lugar completando el formulario online.</span>
+      </a>
+      <a class="card" href="https://culturabritanicacba.org.ar/project/pago-online/" style="background:#fff;border:1px solid #DCE3EF;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0">
+        <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;font-weight:700">Alumnos</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:700;line-height:1.1">Pago online</span>
+        <span style="color:#3D4C6B;font-size:15px;line-height:1.5">Abonás tus cuotas desde cualquier dispositivo.</span>
+      </a>
+      <a class="card" href="https://culturabritanicacba.org.ar/project/informacion-importante/" style="background:#fff;border:1px solid #DCE3EF;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0">
+        <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;font-weight:700">Avisos</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:700;line-height:1.1">Información importante</span>
+        <span style="color:#3D4C6B;font-size:15px;line-height:1.5">Novedades y comunicados de la Asociación.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Cursos -->
+  <section style="background:#fff;border-top:1px solid #DCE3EF;border-bottom:1px solid #DCE3EF">
+    <div style="max-width:1240px;margin:0 auto;padding:72px clamp(16px,4vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-end;margin-bottom:32px">
+        <div style="flex:1 1 360px;min-width:0">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Nuestros cursos</span>
+          <h2 style="margin:10px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance">Encontrá el curso para tu etapa</h2>
+        </div>
+        <span style="font-size:15px;color:#4A5878"><span id="contador"></span></span>
+      </div>
+
+      <div id="filtros" role="group" aria-label="Filtrar cursos" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
+        <!-- los botones se generan con el script de abajo -->
+      </div>
+
+      <div id="cursos" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px">
+        <!-- las tarjetas se generan con el script de abajo -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Exámenes internacionales -->
+  <section style="background:#12254A;color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:80px clamp(16px,4vw,48px);display:flex;flex-wrap:wrap;gap:40px 64px;align-items:center">
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FF8A9B">Exámenes internacionales</span>
+        <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(30px,4vw,48px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance">Certificá tu inglés con Cambridge e IELTS</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#C9D5EA;max-width:520px">Preparate con docentes de la Asociación para rendir los exámenes que abren puertas en estudios y trabajo.</p>
+        <a class="cta" href="https://culturabritanicacba.org.ar/aprende-ingles/certifica-tu-ingles/" style="align-self:flex-start;padding:15px 26px;border-radius:999px;background:#fff;color:#12254A;font-weight:700;font-size:15px">Conocé las inscripciones</a>
+      </div>
+      <div style="flex:1 1 360px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
+        <a class="card" href="https://culturabritanicacba.org.ar/project/universidad-de-cambridge/" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800">Cambridge</span>
+          <span style="color:#C9D5EA;font-size:14px;line-height:1.5">Universidad de Cambridge</span>
+        </a>
+        <a class="card" href="https://culturabritanicacba.org.ar/project/examen-ielts/" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800">IELTS</span>
+          <span style="color:#C9D5EA;font-size:14px;line-height:1.5">Examen IELTS</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Empresas -->
+  <section style="max-width:1240px;margin:0 auto;padding:80px clamp(16px,4vw,48px) 24px">
+    <div style="background:#E6DFF5;border-radius:28px;padding:clamp(28px,5vw,56px);display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between">
+      <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4B3A7A">Para empresas</span>
+        <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,3.6vw,42px);line-height:1.1;text-wrap:balance">Capacitación In Company</h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#3D3556;max-width:540px">Llevamos el inglés a tu equipo, en tu empresa o de forma online personalizada.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a class="cta" href="https://culturabritanicacba.org.ar/project/capacitacion-in-company/" style="padding:15px 26px;border-radius:999px;background:#12254A;color:#fff;font-weight:700;font-size:15px">Capacitación In Company</a>
+        <a class="cta" href="https://culturabritanicacba.org.ar/project/cursoskype/" style="padding:13px 24px;border-radius:999px;border:2px solid #12254A;font-weight:700;font-size:15px">Cursos online</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Más de la Asociación -->
+  <section style="max-width:1240px;margin:0 auto;padding:56px clamp(16px,4vw,48px) 88px">
+    <h2 style="margin:0 0 28px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(26px,3.4vw,38px);line-height:1.1">Más en la Asociación</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+      <a class="card" href="https://culturabritanicacba.org.ar/biblioteca/" style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 6h8a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H5V6ZM25 6h-8a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h9V6Z" stroke="#12254A" stroke-width="2" stroke-linejoin="round"></path></svg>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Biblioteca</span>
+        <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Material para aprender y practicar.</span>
+      </a>
+      <a class="card" href="https://culturabritanicacba.org.ar/convenios/" style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15l6-6 5 4 6-5 5 5M4 15l6 6 5-4 5 4 6-5" stroke="#12254A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Convenios</span>
+        <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Acuerdos con instituciones y organizaciones.</span>
+      </a>
+      <a class="card" href="https://culturabritanicacba.org.ar/beneficios/" style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 4l3.4 7 7.6 1-5.6 5.3 1.4 7.7L15 21.2 8.2 25l1.4-7.7L4 12l7.6-1L15 4Z" stroke="#12254A" stroke-width="2" stroke-linejoin="round"></path></svg>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Beneficios</span>
+        <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Ventajas para alumnos y socios.</span>
+      </a>
+      <a class="card" href="#eventos" data-abrir-eventos style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><rect x="4" y="6" width="22" height="20" rx="3" stroke="#12254A" stroke-width="2"></rect><path d="M4 12h22M10 3v6M20 3v6" stroke="#12254A" stroke-width="2" stroke-linecap="round"></path></svg>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Eventos</span>
+        <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Actividades y encuentros de la comunidad.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#0C1A36;color:#C9D5EA">
+    <div style="max-width:1240px;margin:0 auto;padding:56px clamp(16px,4vw,48px) 40px;display:flex;flex-wrap:wrap;gap:36px 64px;justify-content:space-between">
+      <div style="flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;color:#fff">Cultura Británica</span>
+        <span style="font-size:14px;line-height:1.6;max-width:340px">Asociación Argentina de Cultura Británica. Más de 85 años enseñando inglés en Córdoba.</span>
+      </div>
+      <div style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <span style="color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px">Contacto</span>
+        <span>[DIRECCIÓN DE LA SEDE]</span>
+        <span>[TELÉFONO]</span>
+        <span>[EMAIL DE ADMINISTRACIÓN]</span>
+      </div>
+      <div style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <span style="color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px">La Asociación</span>
+        <a href="https://culturabritanicacba.org.ar/institucional/">Institucional</a>
+        <a href="https://culturabritanicacba.org.ar/institucional/vinculos-institucionales/">Vínculos institucionales</a>
+        <a href="https://culturabritanicacba.org.ar/politica-de-cookies-br/">Política de cookies</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12)">
+      <div style="max-width:1240px;margin:0 auto;padding:18px clamp(16px,4vw,48px);font-size:13px;color:#9FB4DC">Demo de rediseño con contenido de culturabritanicacba.org.ar. Imágenes y datos de contacto a completar.</div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- =====================================================================
+     MODAL: FORMULARIO DE PRE-INSCRIPCIÓN 2027
+     ===================================================================== -->
+<dialog id="dlg-preinscripcion" class="cb-modal" aria-labelledby="cb-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="cb-titulo">Formulario de Pre-Inscripción 2027</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-form aria-label="Cerrar formulario">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <!-- FORMULARIO
+           Formspree: reemplazá TU_FORM_ID en el <script> de abajo (FORMSPREE_URL).
+           Los "name" de cada campo son los que te van a llegar por mail. -->
+      <form class="cb-form" id="preinscripcion" method="post" action="https://formspree.io/f/TU_FORM_ID">
+
+        <p class="cb-note">Los campos marcados con <span class="cb-req">*</span> son obligatorios.</p>
+
+        <!-- Asunto del mail que te llega -->
+        <input type="hidden" name="_subject" value="Nueva pre-inscripción 2027">
+
+        <fieldset>
+          <legend><span class="cb-step">1</span> Datos del alumno</legend>
+          <div class="cb-grid">
+            <div class="cb-field">
+              <label for="apellido">Apellido del alumno <span class="cb-req">*</span></label>
+              <input type="text" id="apellido" name="apellido_alumno" autocomplete="family-name" required>
+            </div>
+            <div class="cb-field">
+              <label for="nombre">Nombre del alumno <span class="cb-req">*</span></label>
+              <input type="text" id="nombre" name="nombre_alumno" autocomplete="given-name" required>
+            </div>
+            <div class="cb-field">
+              <label for="documento">Tipo y número de documento <span class="cb-req">*</span></label>
+              <input type="text" id="documento" name="documento" placeholder="Ej: DNI 12.345.678" required>
+            </div>
+            <div class="cb-field">
+              <label for="nacimiento">Fecha de nacimiento <span class="cb-req">*</span></label>
+              <input type="date" id="nacimiento" name="fecha_nacimiento" autocomplete="bday" required>
+            </div>
+            <div class="cb-field cb-full">
+              <label for="domicilio">Domicilio <span class="cb-req">*</span></label>
+              <input type="text" id="domicilio" name="domicilio" autocomplete="street-address" required>
+              <p class="cb-hint">Calle, número, barrio, código postal, localidad.</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="cb-step">2</span> Contacto del alumno</legend>
+          <div class="cb-grid">
+            <div class="cb-field">
+              <label for="email_alumno">Correo electrónico del alumno <span class="cb-req">*</span></label>
+              <input type="email" id="email_alumno" name="email" autocomplete="email" required>
+            </div>
+            <div class="cb-field">
+              <label for="tel_alumno">Teléfono de contacto del alumno <span class="cb-req">*</span></label>
+              <input type="tel" id="tel_alumno" name="telefono_alumno" autocomplete="tel" required>
+              <p class="cb-hint">Agregar característica.</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="cb-step">3</span> Responsable (si el alumno es menor de edad)</legend>
+          <div class="cb-grid">
+            <div class="cb-field">
+              <label for="nombre_resp">Apellido y nombre del responsable</label>
+              <input type="text" id="nombre_resp" name="nombre_responsable">
+            </div>
+            <div class="cb-field">
+              <label for="email_resp">Correo electrónico del responsable</label>
+              <input type="email" id="email_resp" name="email_responsable">
+            </div>
+            <div class="cb-field">
+              <label for="tel_resp">Teléfono de contacto del responsable</label>
+              <input type="tel" id="tel_resp" name="telefono_responsable">
+              <p class="cb-hint">Agregar característica.</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="cb-step">4</span> Salud y emergencia</legend>
+          <div class="cb-grid">
+            <div class="cb-field cb-full">
+              <label for="afeccion">¿Sufre alguna afección que necesite cuidados especiales? <span class="cb-req">*</span></label>
+              <input type="text" id="afeccion" name="afeccion" placeholder="Si no, escribí “No”" required>
+              <p class="cb-hint">Por favor indicar cuál en caso de ser afirmativa su respuesta.</p>
+            </div>
+            <div class="cb-field cb-full">
+              <label for="emergencia">En caso de emergencia contactarse con <span class="cb-req">*</span></label>
+              <input type="text" id="emergencia" name="contacto_emergencia" placeholder="Nombre y teléfono con característica" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="cb-step">5</span> Curso</legend>
+          <div class="cb-grid">
+            <div class="cb-field cb-full">
+              <label for="medio">¿Por qué medio conoce nuestra institución? <span class="cb-req">*</span></label>
+              <select id="medio" name="medio_conocimiento" required>
+                <option value="" selected disabled>Seleccionar…</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Página web">Página web</option>
+                <option value="Folletería / Volantes">Folletería / Volantes</option>
+                <option value="Por referencia de otros">Por referencia de otros</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
+
+            <div class="cb-field cb-full">
+              <label for="curso_cuatri">Curso cuatrimestral de adultos al que se pre-inscribe</label>
+              <select id="curso_cuatri" name="curso_cuatrimestral">
+                <option value="">-------------</option>
+                <optgroup label="Cuatrimestre 1">
+                  <option>Cuatri 1 - Martes y Jueves 14:00 - 16:30 hs - Presencial</option>
+                  <option>Cuatri 1 - Lunes y Miércoles 14:00 - 16:30 hs - Presencial</option>
+                  <option>Cuatri 1 - Martes y Jueves 17:00 - 19:30 hs - Presencial</option>
+                  <option>Cuatri 1 - Lunes y Miércoles 19:00 - 21:30 hs - Presencial</option>
+                  <option>Cuatri 1 - Martes y Jueves 19:00 - 21:30 hs - Virtual</option>
+                </optgroup>
+                <optgroup label="Cuatrimestre 2">
+                  <option>Cuatri 2 - Martes y Jueves 14:00 - 16:30 hs - Presencial</option>
+                  <option>Cuatri 2 - Martes y Jueves 17:00 - 19:30 hs - Presencial</option>
+                  <option>Cuatri 2 - Lunes y Miércoles 19:00 - 21:30 hs - Presencial</option>
+                  <option>Cuatri 2 - Martes y Jueves 19:00 - 21:30 hs - Virtual</option>
+                </optgroup>
+                <optgroup label="Cuatrimestre 3">
+                  <option>Cuatri 3 - Martes y Jueves 14:00 - 16:30 hs - Presencial</option>
+                  <option>Cuatri 3 - Lunes y Miércoles 19:00 - 21:30 hs - Presencial</option>
+                  <option>Cuatri 3 - Martes y Jueves 19:00 - 21:30 hs - Virtual</option>
+                </optgroup>
+                <optgroup label="Cuatrimestre 4">
+                  <option>Cuatri 4 - Martes y Jueves 14:00 - 16:30 hs - Presencial</option>
+                  <option>Cuatri 4 - Lunes y Miércoles 19:00 - 21:30 hs - Presencial</option>
+                  <option>Cuatri 4 - Martes y Jueves 19:00 - 21:30 hs - Virtual</option>
+                </optgroup>
+                <optgroup label="Cuatrimestre 5">
+                  <option>Cuatri 5 - Martes y Jueves 14:00 - 16:30 hs - Presencial</option>
+                  <option>Cuatri 5 - Lunes y Miércoles 19:00 - 21:30 hs - Presencial</option>
+                  <option>Cuatri 5 - Martes y Jueves 19:00 - 21:30 hs - Virtual</option>
+                </optgroup>
+                <optgroup label="Cuatrimestre 6">
+                  <option>Cuatri 6 - Martes y Jueves 19:00 - 21:30 hs - Presencial</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="cb-field cb-full">
+              <label for="curso_otro">Curso al que se pre-inscribe (si no figura en el listado)</label>
+              <input type="text" id="curso_otro" name="curso_otro" placeholder="Ej: Children 1 Lunes y Miércoles 9 hs - Casa Central">
+              <p class="cb-hint">Ejemplos: “Children 1 Lunes y Miércoles 9 hs - Casa Central” o “Teens 1 Martes y Jueves 17 hs - Anexo Cerro”.</p>
+            </div>
+
+            <div class="cb-field cb-full">
+              <label for="observaciones">Observaciones</label>
+              <textarea id="observaciones" name="observaciones"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Anti-spam de Formspree: los humanos no lo ven -->
+        <div class="cb-hp" aria-hidden="true">
+          <label>No completar <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="cb-actions">
+          <button type="submit" class="cb-btn">Enviar pre-inscripción</button>
+          <button type="button" class="cb-btn cb-btn--ghost" data-cerrar-form>Cancelar</button>
+        </div>
+        <div class="cb-msg" id="cb-error" role="alert"></div>
+      </form>
+
+      <!-- Pantalla de éxito (se muestra después de enviar) -->
+      <div class="cb-ok" id="cb-ok" role="status" aria-live="polite">
+        <div class="cb-ok__icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M7 17.5l7 7L27 10" stroke="#14532D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>¡Gracias por pre-inscribirte!</h3>
+        <p>Recibimos tus datos. Nos vamos a poner en contacto con vos a la brevedad para confirmar tu lugar.</p>
+        <button type="button" class="cb-btn" data-cerrar-form>Volver al sitio</button>
+      </div>
+
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
+     MODAL: EVENTOS
+     Para agregar un evento: copiá un bloque <article class="ev-card"> y
+     cambiale imagen, título y texto. Para sacar uno, borrá su bloque.
+     ===================================================================== -->
+<dialog id="dlg-eventos" class="cb-modal" aria-labelledby="ev-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="ev-titulo">Eventos</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-eventos aria-label="Cerrar eventos">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+      <div class="ev-grid">
+
+        <!-- Evento 1 -->
+        <article class="ev-card">
+          <a class="ev-media" href="https://cineueargentina.wixsite.com/cineue/cordoba" target="_blank" rel="noopener">
+            <img loading="lazy" src="https://culturabritanicacba.org.ar/wp-content/uploads/2018/07/Cine-Europeo-416x418.png" alt="Afiche del Encuentro de Cine Europeo">
+          </a>
+          <div class="ev-body">
+            <span class="ev-tag" style="background:#FBD5DB">Cine</span>
+            <h3 class="ev-title">XV Edición del Encuentro de Cine Europeo</h3>
+            <p class="ev-text">Conocé la programación completa de esta edición del Encuentro de Cine Europeo.</p>
+            <a class="ev-link" href="https://cineueargentina.wixsite.com/cineue/cordoba" target="_blank" rel="noopener">Ver programación →</a>
+          </div>
+        </article>
+
+        <!-- Evento 2 -->
+        <article class="ev-card">
+          <div class="ev-media ev-media--duo">
+            <img loading="lazy" src="https://culturabritanicacba.org.ar/wp-content/uploads/2018/07/IMG-20180627-WA0061-598x402.jpg" alt="Ciclo de Cine y Psicoanálisis">
+            <img loading="lazy" src="https://culturabritanicacba.org.ar/wp-content/uploads/2018/07/IMG_20180709_124419_841-598x424.jpg" alt="Ciclo de Cine y Psicoanálisis">
+          </div>
+          <div class="ev-body">
+            <span class="ev-tag" style="background:#CFE3FF">Cine y psicoanálisis</span>
+            <h3 class="ev-title">Ciclo de Cine y Psicoanálisis – XIV Edición</h3>
+          </div>
+        </article>
+
+        <!-- Evento 3 -->
+        <article class="ev-card">
+          <div class="ev-media">
+            <img loading="lazy" src="https://culturabritanicacba.org.ar/wp-content/uploads/2018/11/Invitation-to-the-Jungle-Book-416x416.jpg" alt="Invitación a The Jungle Book">
+          </div>
+          <div class="ev-body">
+            <span class="ev-tag" style="background:#FFE9A8">Teatro</span>
+            <h3 class="ev-title">Grupo de Teatro de la Asociación</h3>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* =====================================================================
+   CURSOS (listado con filtros)
+   ===================================================================== */
+const base='https://culturabritanicacba.org.ar/project/';
+const tints={'Niños':'#FFE9A8','Jóvenes':'#CFE3FF','Adultos':'#DDE7F7','Exámenes Internacionales':'#FBD5DB','Cursos Especiales':'#D9F0E6','Empresas':'#E6DFF5'};
+const cursos=[
+ ['PlaySchool y Playschool Senior','Niños','playschool/','img/Cursos/Playschool.jpg'],
+['Kinder','Niños','kinder/','img/Cursos/Kinder.jpg'],
+['Children y Juniors','Niños','children/','img/Cursos/Children.jpg'],
+['Prep Course','Niños','prep-course/','img/Cursos/PrepCourse.jpg'],
+ ['Jóvenes','Jóvenes','teens/','img/Cursos/Jovenes.jpg'],
+ ['Cursos Anuales para adultos','Adultos','cursos-anuales/','img/Cursos/Adulto anual.jfif'],
+ ['Cursos Cuatrimestrales para adultos','Adultos','cuatrimestrales/','img/Cursos/adulto cuatrimestral .jfif'],
+ ['Intensivo para adultos','Adultos','intensivo/','img/Cursos/aultos intensivos.jfif'],
+ ['Cursos de Conversación','Cursos Especiales','cursos-de-conversacion/','img/Cursos/Conversaciones.jfif'],
+ ['Traducciones','Cursos Especiales','traducciones/','img/Cursos/Traducciones.jfif'],
+ ['Cursos Online Personalizados','Cursos Especiales','cursoskype/','img/Cursos/Curso online personalizados.jfif'],
+ ['Universidad de Cambridge','Exámenes Internacionales','universidad-de-cambridge/','img/Cursos/Cambridge.jfif'],
+ ['Examen IELTS','Exámenes Internacionales','examen-ielts/','img/Cursos/ielts.jfif'],
+ ['Capacitación In Company','Empresas','capacitacion-in-company/','img/Cursos/Incompany.jfif']
+];
+const categorias=['Todos','Niños','Jóvenes','Adultos','Exámenes Internacionales','Cursos Especiales','Empresas'];
+/* ---- Imágenes de los cursos ----
+   Por defecto busca: img/cursos/<nombre>.jpg  (ej: img/cursos/kinder.jpg)
+   Si tus imágenes están en otra carpeta o son .png/.webp, cambiá estas dos líneas.
+   Para un curso con otro nombre, agregale la ruta como 4º dato en la lista de arriba:
+   ['Kinder','Niños','kinder/','img/mi-foto-kinder.png']
+   Si la imagen no existe, la tarjeta muestra el color de la categoría. */
+const IMG_DIR='img/';
+const IMG_EXT='.jpg';
+const imgCurso=c=>encodeURI(c[3]||(IMG_DIR+c[2].replace(/\/$/,'')+IMG_EXT));
+let activa='Todos';
+const $f=document.getElementById('filtros'),$c=document.getElementById('cursos'),$n=document.getElementById('contador');
+function pintar(){
+  $f.innerHTML=categorias.map(c=>{const on=c===activa;
+    return `<button type="button" data-cat="${c}" aria-pressed="${on}" style="min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #12254A;background:${on?'#12254A':'#fff'};color:${on?'#fff':'#12254A'};font-size:14px;font-weight:600;cursor:pointer">${c}</button>`}).join('');
+  const lista=cursos.filter(c=>activa==='Todos'||c[1]===activa);
+  $n.textContent=lista.length+(lista.length===1?' curso':' cursos');
+  $c.innerHTML=lista.map(c=>`<a class="card" href="${base+c[2]}" style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0"><div style="position:relative;height:170px;background:${tints[c[1]]};overflow:hidden"><img src="${imgCurso(c)}" alt="${c[0]}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><span style="position:absolute;left:14px;bottom:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.92);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#12254A">${c[1]}</span></div><div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:12px;flex:1"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:21px;font-weight:700;line-height:1.15">${c[0]}</span><span style="margin-top:auto;font-size:14px;font-weight:700;color:#C8102E">Ver detalles →</span></div></a>`).join('');
+}
+$f.addEventListener('click',e=>{const b=e.target.closest('button');if(b){activa=b.dataset.cat;pintar();}});
+pintar();
+
+/* =====================================================================
+   MODAL DE PRE-INSCRIPCIÓN + ENVÍO CON FORMSPREE
+   ===================================================================== */
+
+// 1) Pegá acá la URL de tu formulario de Formspree (la ves al crearlo):
+//    https://formspree.io/f/xxxxxxxx
+const FORMSPREE_URL = 'https://formspree.io/f/TU_FORM_ID';
+
+(function () {
+  const dlg   = document.getElementById('dlg-preinscripcion');
+  const form  = document.getElementById('preinscripcion');
+  const ok    = document.getElementById('cb-ok');
+  const err   = document.getElementById('cb-error');
+  const btn   = form.querySelector('button[type="submit"]');
+  const HASH  = '#preinscripcion';
+
+  form.action = FORMSPREE_URL;
+
+  function abrir() {
+    if (dlg.open) return;
+    // Siempre arranca limpio, salvo que acaba de enviarse
+    ok.classList.remove('is-on');
+    form.hidden = false;
+    err.className = 'cb-msg';
+    dlg.showModal();
+    dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    document.body.classList.add('cb-lock');
+    history.replaceState(null, '', HASH);
+  }
+  function cerrar() { if (dlg.open) dlg.close(); }
+
+  // Cualquier elemento con data-abrir-form abre el modal
+  document.addEventListener('click', function (e) {
+    const t = e.target.closest('[data-abrir-form]');
+    if (t) { e.preventDefault(); abrir(); return; }
+    if (e.target.closest('[data-cerrar-form]')) { cerrar(); return; }
+    if (e.target === dlg) cerrar();           // clic en el fondo oscuro
+  });
+
+  dlg.addEventListener('close', function () {
+    document.body.classList.remove('cb-lock');
+    if (location.hash === HASH) history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  // Si entran directo con tusitio.com/#preinscripcion, se abre solo
+  if (location.hash === HASH) abrir();
+  window.addEventListener('hashchange', function () { if (location.hash === HASH) abrir(); });
+
+  // Envío
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    if (FORMSPREE_URL.includes('TU_FORM_ID')) {
+      err.textContent = 'Falta conectar Formspree: reemplazá TU_FORM_ID en FORMSPREE_URL (script al final del archivo).';
+      err.className = 'cb-msg is-err';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    err.className = 'cb-msg';
+
+    try {
+      const r = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!r.ok) {
+        let msg = 'No pudimos enviar el formulario. Intentá nuevamente.';
+        try { const j = await r.json(); if (j.errors) msg = j.errors.map(x => x.message).join(' '); } catch (_) {}
+        throw new Error(msg);
+      }
+      form.reset();
+      form.hidden = true;
+      ok.classList.add('is-on');
+      dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    } catch (ex) {
+      err.textContent = ex.message || 'No pudimos enviar el formulario. Revisá tu conexión e intentá nuevamente.';
+      err.className = 'cb-msg is-err';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar pre-inscripción';
+    }
+  });
+})();
+
+/* =====================================================================
+   MODAL DE EVENTOS
+   ===================================================================== */
+(function () {
+  const dlg  = document.getElementById('dlg-eventos');
+  const HASH = '#eventos';
+
+  function abrir() {
+    if (dlg.open) return;
+    dlg.showModal();
+    dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    document.body.classList.add('cb-lock');
+    history.replaceState(null, '', HASH);
+  }
+  function cerrar() { if (dlg.open) dlg.close(); }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-abrir-eventos]')) { e.preventDefault(); abrir(); return; }
+    if (e.target.closest('[data-cerrar-eventos]')) { cerrar(); return; }
+    if (e.target === dlg) cerrar();
+  });
+
+  dlg.addEventListener('close', function () {
+    document.body.classList.remove('cb-lock');
+    if (location.hash === HASH) history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  if (location.hash === HASH) abrir();
+  window.addEventListener('hashchange', function () { if (location.hash === HASH) abrir(); });
+})();
+</script>
+</body>
+</html>
