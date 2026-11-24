@@ -8,7 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Plus+Jakarta+Sans:wght@400..700&display=swap">
 <style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#12254A;background:#F4F6FA}
+#cursos-todos{scroll-margin-top:16px}
 a{color:inherit;text-decoration:none}
 nav a:hover{color:#C8102E}
 .cta:hover{filter:brightness(1.08)}
@@ -135,6 +138,17 @@ body.cb-lock{overflow:hidden}
 .ev-link{margin-top:auto;padding-top:6px;font-size:14px;font-weight:700;color:#C8102E}
 .ev-link:hover{text-decoration:underline}
 
+/* ---------- Convenios ---------- */
+.cv-search{width:100%;height:48px;padding:0 16px 0 44px;font:inherit;font-size:15px;color:#1F2937;background:#F4F6FA url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235B6781' stroke-width='2.4' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3.5-3.5'/></svg>") no-repeat 16px center;border:1.5px solid #D3DBEA;border-radius:999px;outline:none;transition:border-color .15s,box-shadow .15s,background-color .15s}
+.cv-search:focus{background-color:#fff;border-color:#12254A;box-shadow:0 0 0 4px rgba(18,37,74,.13)}
+.cv-chip{min-height:40px;padding:0 16px;border-radius:999px;border:1.5px solid #12254A;background:#fff;color:#12254A;font-size:13.5px;font-weight:700;cursor:pointer;transition:background .15s,color .15s}
+.cv-chip:hover{background:#EEF2FA}
+.cv-chip[aria-pressed="true"]{background:#12254A;color:#fff}
+.cv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.cv-item{display:flex;flex-direction:column;gap:3px;min-width:0;padding:12px 14px;background:#F4F6FA;border:1px solid #DCE3EF;border-radius:14px;font-size:14.5px;font-weight:600;line-height:1.3}
+.cv-note{font-size:12.5px;font-weight:400;line-height:1.4;color:#5B6781}
+.cv-new{align-self:flex-start;padding:2px 8px;border-radius:999px;background:#C8102E;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.08em}
+
 @media (max-width:720px){
   .cb-modal{width:100%;max-width:100%;height:100dvh;max-height:100dvh;border-radius:0}
   .cb-grid{grid-template-columns:1fr}
@@ -166,14 +180,14 @@ body.cb-lock{overflow:hidden}
         </span>
       </a>
       <nav aria-label="Principal" style="display:flex;flex-wrap:wrap;gap:6px 26px;font-size:15px;font-weight:500">
-        <a href="https://culturabritanicacba.org.ar/institucional/">Institucional</a>
+        <a href="#institucional" data-abrir-institucional>Institucional</a>
         <a href="https://culturabritanicacba.org.ar/aprende-ingles/">Aprendé inglés</a>
-        <a href="https://culturabritanicacba.org.ar/convenios/">Convenios</a>
-        <a href="https://culturabritanicacba.org.ar/beneficios/">Beneficios</a>
-        <a href="https://culturabritanicacba.org.ar/biblioteca/">Biblioteca</a>
+        <a href="#convenios" data-abrir-convenios>Convenios</a>
+        <a href="#beneficios" data-abrir-beneficios>Beneficios</a>
+        <a href="#biblioteca" data-abrir-biblioteca>Biblioteca</a>
         <a href="#eventos" data-abrir-eventos>Eventos</a>
       </nav>
-      <a class="cta" href="https://culturabritanicacba.org.ar/contacto/" style="padding:12px 22px;border-radius:999px;background:#C8102E;color:#fff;font-weight:600;font-size:14px">Contacto</a>
+      <a class="cta" href="#contacto" data-abrir-contacto style="padding:12px 22px;border-radius:999px;background:#C8102E;color:#fff;font-weight:600;font-size:14px">Contacto</a>
     </div>
   </header>
 
@@ -188,7 +202,7 @@ body.cb-lock{overflow:hidden}
         <a class="cta" href="#preinscripcion" data-abrir-form style="padding:16px 28px;border-radius:999px;background:#C8102E;color:#fff;font-weight:700;font-size:16px;display:inline-flex;gap:10px;align-items:center">Pre-inscripción 2027
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </a>
-        <a class="cta" href="https://culturabritanicacba.org.ar/aprende-ingles/" style="padding:14px 26px;border-radius:999px;border:2px solid #12254A;color:#12254A;font-weight:700;font-size:16px">Ver cursos</a>
+        <a class="cta" href="#cursos-todos" style="padding:14px 26px;border-radius:999px;border:2px solid #12254A;color:#12254A;font-weight:700;font-size:16px">Ver cursos</a>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
         <span style="padding:7px 14px;border-radius:999px;background:#FFE9A8;font-size:13px;font-weight:600">Niños</span>
@@ -236,7 +250,7 @@ body.cb-lock{overflow:hidden}
   </section>
 
   <!-- Cursos -->
-  <section style="background:#fff;border-top:1px solid #DCE3EF;border-bottom:1px solid #DCE3EF">
+  <section id="cursos-todos" style="background:#fff;border-top:1px solid #DCE3EF;border-bottom:1px solid #DCE3EF">
     <div style="max-width:1240px;margin:0 auto;padding:72px clamp(16px,4vw,48px)">
       <div style="display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-end;margin-bottom:32px">
         <div style="flex:1 1 360px;min-width:0">
@@ -266,11 +280,11 @@ body.cb-lock{overflow:hidden}
         <a class="cta" href="https://culturabritanicacba.org.ar/aprende-ingles/certifica-tu-ingles/" style="align-self:flex-start;padding:15px 26px;border-radius:999px;background:#fff;color:#12254A;font-weight:700;font-size:15px">Conocé las inscripciones</a>
       </div>
       <div style="flex:1 1 360px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
-        <a class="card" href="https://culturabritanicacba.org.ar/project/universidad-de-cambridge/" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+        <a class="card" href="#cambridge" data-abrir-cambridge style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
           <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800">Cambridge</span>
           <span style="color:#C9D5EA;font-size:14px;line-height:1.5">Universidad de Cambridge</span>
         </a>
-        <a class="card" href="https://culturabritanicacba.org.ar/project/examen-ielts/" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+        <a class="card" href="#ielts" data-abrir-ielts style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
           <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800">IELTS</span>
           <span style="color:#C9D5EA;font-size:14px;line-height:1.5">Examen IELTS</span>
         </a>
@@ -297,17 +311,22 @@ body.cb-lock{overflow:hidden}
   <section style="max-width:1240px;margin:0 auto;padding:56px clamp(16px,4vw,48px) 88px">
     <h2 style="margin:0 0 28px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(26px,3.4vw,38px);line-height:1.1">Más en la Asociación</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
-      <a class="card" href="https://culturabritanicacba.org.ar/biblioteca/" style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <a class="card" href="#institucional" data-abrir-institucional style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 12L15 5l11 7M7 13v9M13 13v9M17 13v9M23 13v9M4 25h22" stroke="#12254A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Institucional</span>
+        <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Nuestra historia, misión y sedes.</span>
+      </a>
+      <a class="card" href="#biblioteca" data-abrir-biblioteca style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 6h8a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H5V6ZM25 6h-8a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h9V6Z" stroke="#12254A" stroke-width="2" stroke-linejoin="round"></path></svg>
         <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Biblioteca</span>
         <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Material para aprender y practicar.</span>
       </a>
-      <a class="card" href="https://culturabritanicacba.org.ar/convenios/" style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <a class="card" href="#convenios" data-abrir-convenios style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15l6-6 5 4 6-5 5 5M4 15l6 6 5-4 5 4 6-5" stroke="#12254A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Convenios</span>
         <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Acuerdos con instituciones y organizaciones.</span>
       </a>
-      <a class="card" href="https://culturabritanicacba.org.ar/beneficios/" style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <a class="card" href="#beneficios" data-abrir-beneficios style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 4l3.4 7 7.6 1-5.6 5.3 1.4 7.7L15 21.2 8.2 25l1.4-7.7L4 12l7.6-1L15 4Z" stroke="#12254A" stroke-width="2" stroke-linejoin="round"></path></svg>
         <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700">Beneficios</span>
         <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Ventajas para alumnos y socios.</span>
@@ -327,21 +346,29 @@ body.cb-lock{overflow:hidden}
         <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;color:#fff">Cultura Británica</span>
         <span style="font-size:14px;line-height:1.6;max-width:340px">Asociación Argentina de Cultura Británica. Más de 85 años enseñando inglés en Córdoba.</span>
       </div>
-      <div style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:10px;font-size:14px">
-        <span style="color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px">Contacto</span>
-        <span>[DIRECCIÓN DE LA SEDE]</span>
-        <span>[TELÉFONO]</span>
-        <span>[EMAIL DE ADMINISTRACIÓN]</span>
+      <div style="flex:1 1 230px;min-width:0;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5">
+        <span style="color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px">Sede principal</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:#fff">Casa Central</span>
+        <span>Av. Hipólito Yrigoyen 496, Nueva Córdoba</span>
+        <span><a href="tel:+543514691000" style="text-decoration:underline">0351 469-1000</a> · <a href="tel:+543514682285" style="text-decoration:underline">0351 468-2285</a></span>
+        <a href="mailto:info@culturabritanicacba.org.ar" style="text-decoration:underline;overflow-wrap:anywhere">info@culturabritanicacba.org.ar</a>
+      </div>
+      <div style="flex:1 1 230px;min-width:0;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5">
+        <span style="color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px">Anexo</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:#fff">Cerro de Las Rosas</span>
+        <span>José Esteban Bustos 1658, Cerro</span>
+        <a href="tel:+543518990418" style="text-decoration:underline">0351 899-0418</a>
+        <a href="mailto:anexocerro@culturabritanicacba.org.ar" style="text-decoration:underline;overflow-wrap:anywhere">anexocerro@culturabritanicacba.org.ar</a>
       </div>
       <div style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:10px;font-size:14px">
         <span style="color:#fff;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px">La Asociación</span>
-        <a href="https://culturabritanicacba.org.ar/institucional/">Institucional</a>
+        <a href="#institucional" data-abrir-institucional>Institucional</a>
         <a href="https://culturabritanicacba.org.ar/institucional/vinculos-institucionales/">Vínculos institucionales</a>
         <a href="https://culturabritanicacba.org.ar/politica-de-cookies-br/">Política de cookies</a>
       </div>
     </div>
     <div style="border-top:1px solid rgba(255,255,255,.12)">
-      <div style="max-width:1240px;margin:0 auto;padding:18px clamp(16px,4vw,48px);font-size:13px;color:#9FB4DC">Demo de rediseño con contenido de culturabritanicacba.org.ar. Imágenes y datos de contacto a completar.</div>
+      <div style="max-width:1240px;margin:0 auto;padding:18px clamp(16px,4vw,48px);font-size:13px;color:#9FB4DC">Demo de rediseño con contenido de culturabritanicacba.org.ar. Imágenes a completar.</div>
     </div>
   </footer>
 
@@ -542,6 +569,484 @@ body.cb-lock{overflow:hidden}
 </dialog>
 
 <!-- =====================================================================
+     MODAL: BIBLIOTECA
+     La foto va en img/Biblioteca.jpg (si no existe se ve la ilustración).
+     ===================================================================== -->
+<dialog id="dlg-biblioteca" class="cb-modal" aria-labelledby="bib-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="bib-titulo">Biblioteca</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-biblioteca aria-label="Cerrar biblioteca">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <!-- Imagen: foto de una biblioteca inglesa (img/Biblioteca.jpg) sobre una ilustración de respaldo -->
+      <div style="position:relative;margin-top:20px;aspect-ratio:16/7;min-height:170px;border-radius:20px;overflow:hidden;background:#12254A">
+        <svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"><defs><linearGradient id="bw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBE9B7"/><stop offset="1" stop-color="#E9C77A"/></linearGradient></defs><rect width="800" height="300" fill="#12254A"/><rect x="18" y="18" width="288" height="268" rx="4" fill="#4A2E1B"/><rect x="26" y="26" width="272" height="252" fill="#2B1A10"/><rect x="28" y="34.4" width="14" height="42" rx="1.5" fill="#1F3A78"/><rect x="43" y="32.4" width="10" height="44" rx="1.5" fill="#1F3A78"/><rect x="54" y="34.4" width="8" height="42" rx="1.5" fill="#3E5C8A"/><rect x="63" y="47.4" width="8" height="29" rx="1.5" fill="#B5651D"/><rect x="73" y="43.4" width="14" height="33" rx="1.5" fill="#B5651D"/><rect x="87" y="46.4" width="16" height="30" rx="1.5" fill="#8C2F39"/><rect x="103" y="41.4" width="10" height="35" rx="1.5" fill="#B5651D"/><rect x="113" y="38.4" width="14" height="38" rx="1.5" fill="#1F3A78"/><rect x="128" y="41.4" width="16" height="35" rx="1.5" fill="#3E5C8A"/><rect x="146" y="46.4" width="8" height="30" rx="1.5" fill="#1F3A78"/><rect x="155" y="46.4" width="14" height="30" rx="1.5" fill="#3E5C8A"/><rect x="170" y="32.4" width="10" height="44" rx="1.5" fill="#3E5C8A"/><rect x="180" y="45.4" width="8" height="31" rx="1.5" fill="#7A4B2A"/><rect x="188" y="36.4" width="12" height="40" rx="1.5" fill="#C8102E"/><rect x="200" y="42.4" width="8" height="34" rx="1.5" fill="#2F5D50"/><rect x="208" y="36.4" width="14" height="40" rx="1.5" fill="#7A4B2A"/><rect x="224" y="42.4" width="8" height="34" rx="1.5" fill="#3E5C8A"/><rect x="233" y="39.4" width="8" height="37" rx="1.5" fill="#E8DDC4"/><rect x="241" y="45.4" width="14" height="31" rx="1.5" fill="#D9B86C"/><rect x="256" y="48.4" width="8" height="28" rx="1.5" fill="#8C2F39"/><rect x="266" y="43.4" width="14" height="33" rx="1.5" fill="#5B6B3A"/><rect x="281" y="32.4" width="14" height="44" rx="1.5" fill="#2F5D50"/><rect x="26" y="76.4" width="272" height="5" fill="#6B4429"/><rect x="28" y="86.8" width="14" height="40" rx="1.5" fill="#C8102E"/><rect x="44" y="92.8" width="14" height="34" rx="1.5" fill="#8C2F39"/><rect x="59" y="89.8" width="16" height="37" rx="1.5" fill="#8C2F39"/><rect x="76" y="86.8" width="10" height="40" rx="1.5" fill="#B5651D"/><rect x="86" y="94.8" width="8" height="32" rx="1.5" fill="#2F5D50"/><rect x="96" y="98.8" width="12" height="28" rx="1.5" fill="#B5651D"/><rect x="109" y="86.8" width="12" height="40" rx="1.5" fill="#C8102E"/><rect x="121" y="92.8" width="8" height="34" rx="1.5" fill="#B5651D"/><rect x="130" y="87.8" width="8" height="39" rx="1.5" fill="#E8DDC4"/><rect x="140" y="83.8" width="10" height="43" rx="1.5" fill="#B5651D"/><rect x="151" y="93.8" width="14" height="33" rx="1.5" fill="#D9B86C"/><rect x="166" y="91.8" width="10" height="35" rx="1.5" fill="#2F5D50"/><rect x="177" y="92.8" width="16" height="34" rx="1.5" fill="#7A4B2A"/><rect x="195" y="96.8" width="16" height="30" rx="1.5" fill="#7A4B2A"/><rect x="211" y="95.8" width="8" height="31" rx="1.5" fill="#8C2F39"/><rect x="220" y="86.8" width="10" height="40" rx="1.5" fill="#3E5C8A"/><rect x="232" y="83.8" width="16" height="43" rx="1.5" fill="#3E5C8A"/><rect x="249" y="94.8" width="8" height="32" rx="1.5" fill="#2F5D50"/><rect x="259" y="96.8" width="16" height="30" rx="1.5" fill="#3E5C8A"/><rect x="276" y="98.8" width="10" height="28" rx="1.5" fill="#C8102E"/><rect x="26" y="126.8" width="272" height="5" fill="#6B4429"/><rect x="28" y="148.2" width="10" height="29" rx="1.5" fill="#8C2F39"/><rect x="39" y="138.2" width="12" height="39" rx="1.5" fill="#5B6B3A"/><rect x="52" y="138.2" width="8" height="39" rx="1.5" fill="#D9B86C"/><rect x="62" y="133.2" width="12" height="44" rx="1.5" fill="#B5651D"/><rect x="75" y="148.2" width="16" height="29" rx="1.5" fill="#8C2F39"/><rect x="93" y="140.2" width="12" height="37" rx="1.5" fill="#8C2F39"/><rect x="105" y="147.2" width="16" height="30" rx="1.5" fill="#1F3A78"/><rect x="121" y="139.2" width="12" height="38" rx="1.5" fill="#D9B86C"/><rect x="133" y="135.2" width="8" height="42" rx="1.5" fill="#5B6B3A"/><rect x="142" y="145.2" width="8" height="32" rx="1.5" fill="#E8DDC4"/><rect x="151" y="134.2" width="8" height="43" rx="1.5" fill="#C8102E"/><rect x="161" y="134.2" width="8" height="43" rx="1.5" fill="#B5651D"/><rect x="169" y="137.2" width="16" height="40" rx="1.5" fill="#7A4B2A"/><rect x="185" y="147.2" width="16" height="30" rx="1.5" fill="#C8102E"/><rect x="201" y="141.2" width="8" height="36" rx="1.5" fill="#7A4B2A"/><rect x="210" y="135.2" width="14" height="42" rx="1.5" fill="#1F3A78"/><rect x="226" y="147.2" width="16" height="30" rx="1.5" fill="#5B6B3A"/><rect x="242" y="147.2" width="12" height="30" rx="1.5" fill="#1F3A78"/><rect x="254" y="146.2" width="10" height="31" rx="1.5" fill="#1F3A78"/><rect x="266" y="149.2" width="12" height="28" rx="1.5" fill="#E8DDC4"/><rect x="279" y="143.2" width="10" height="34" rx="1.5" fill="#5B6B3A"/><rect x="26" y="177.2" width="272" height="5" fill="#6B4429"/><rect x="28" y="185.6" width="12" height="42" rx="1.5" fill="#1F3A78"/><rect x="41" y="187.6" width="12" height="40" rx="1.5" fill="#3E5C8A"/><rect x="54" y="193.6" width="14" height="34" rx="1.5" fill="#2F5D50"/><rect x="70" y="189.6" width="10" height="38" rx="1.5" fill="#2F5D50"/><rect x="81" y="184.6" width="10" height="43" rx="1.5" fill="#E8DDC4"/><rect x="91" y="191.6" width="8" height="36" rx="1.5" fill="#D9B86C"/><rect x="99" y="184.6" width="14" height="43" rx="1.5" fill="#3E5C8A"/><rect x="114" y="187.6" width="14" height="40" rx="1.5" fill="#5B6B3A"/><rect x="130" y="185.6" width="12" height="42" rx="1.5" fill="#E8DDC4"/><rect x="142" y="191.6" width="8" height="36" rx="1.5" fill="#B5651D"/><rect x="150" y="188.6" width="12" height="39" rx="1.5" fill="#3E5C8A"/><rect x="162" y="187.6" width="10" height="40" rx="1.5" fill="#1F3A78"/><rect x="173" y="191.6" width="8" height="36" rx="1.5" fill="#2F5D50"/><rect x="182" y="196.6" width="8" height="31" rx="1.5" fill="#1F3A78"/><rect x="190" y="188.6" width="16" height="39" rx="1.5" fill="#C8102E"/><rect x="207" y="184.6" width="10" height="43" rx="1.5" fill="#3E5C8A"/><rect x="218" y="184.6" width="8" height="43" rx="1.5" fill="#5B6B3A"/><rect x="226" y="192.6" width="10" height="35" rx="1.5" fill="#3E5C8A"/><rect x="237" y="183.6" width="16" height="44" rx="1.5" fill="#5B6B3A"/><rect x="254" y="192.6" width="14" height="35" rx="1.5" fill="#C8102E"/><rect x="270" y="195.6" width="14" height="32" rx="1.5" fill="#1F3A78"/><rect x="286" y="199.6" width="10" height="28" rx="1.5" fill="#7A4B2A"/><rect x="26" y="227.6" width="272" height="5" fill="#6B4429"/><rect x="28" y="240.0" width="14" height="38" rx="1.5" fill="#2F5D50"/><rect x="42" y="244.0" width="8" height="34" rx="1.5" fill="#2F5D50"/><rect x="52" y="241.0" width="8" height="37" rx="1.5" fill="#5B6B3A"/><rect x="61" y="250.0" width="12" height="28" rx="1.5" fill="#E8DDC4"/><rect x="73" y="236.0" width="8" height="42" rx="1.5" fill="#E8DDC4"/><rect x="83" y="235.0" width="12" height="43" rx="1.5" fill="#8C2F39"/><rect x="96" y="237.0" width="8" height="41" rx="1.5" fill="#8C2F39"/><rect x="105" y="240.0" width="16" height="38" rx="1.5" fill="#D9B86C"/><rect x="123" y="234.0" width="10" height="44" rx="1.5" fill="#5B6B3A"/><rect x="135" y="248.0" width="14" height="30" rx="1.5" fill="#2F5D50"/><rect x="151" y="241.0" width="16" height="37" rx="1.5" fill="#5B6B3A"/><rect x="168" y="234.0" width="16" height="44" rx="1.5" fill="#5B6B3A"/><rect x="185" y="238.0" width="12" height="40" rx="1.5" fill="#B5651D"/><rect x="198" y="246.0" width="12" height="32" rx="1.5" fill="#5B6B3A"/><rect x="211" y="235.0" width="16" height="43" rx="1.5" fill="#2F5D50"/><rect x="229" y="247.0" width="16" height="31" rx="1.5" fill="#5B6B3A"/><rect x="245" y="238.0" width="16" height="40" rx="1.5" fill="#8C2F39"/><rect x="261" y="238.0" width="16" height="40" rx="1.5" fill="#5B6B3A"/><rect x="277" y="248.0" width="14" height="30" rx="1.5" fill="#D9B86C"/><rect x="26" y="278.0" width="272" height="5" fill="#6B4429"/><rect x="494" y="18" width="288" height="268" rx="4" fill="#4A2E1B"/><rect x="502" y="26" width="272" height="252" fill="#2B1A10"/><rect x="504" y="34.4" width="16" height="42" rx="1.5" fill="#7A4B2A"/><rect x="522" y="41.4" width="12" height="35" rx="1.5" fill="#1F3A78"/><rect x="536" y="38.4" width="10" height="38" rx="1.5" fill="#7A4B2A"/><rect x="548" y="38.4" width="16" height="38" rx="1.5" fill="#C8102E"/><rect x="565" y="48.4" width="14" height="28" rx="1.5" fill="#3E5C8A"/><rect x="580" y="47.4" width="8" height="29" rx="1.5" fill="#2F5D50"/><rect x="589" y="48.4" width="10" height="28" rx="1.5" fill="#3E5C8A"/><rect x="600" y="41.4" width="12" height="35" rx="1.5" fill="#B5651D"/><rect x="614" y="33.4" width="8" height="43" rx="1.5" fill="#B5651D"/><rect x="622" y="40.4" width="16" height="36" rx="1.5" fill="#2F5D50"/><rect x="640" y="36.4" width="8" height="40" rx="1.5" fill="#7A4B2A"/><rect x="649" y="42.4" width="16" height="34" rx="1.5" fill="#5B6B3A"/><rect x="666" y="42.4" width="16" height="34" rx="1.5" fill="#5B6B3A"/><rect x="683" y="37.4" width="10" height="39" rx="1.5" fill="#D9B86C"/><rect x="694" y="38.4" width="16" height="38" rx="1.5" fill="#2F5D50"/><rect x="711" y="45.4" width="10" height="31" rx="1.5" fill="#D9B86C"/><rect x="722" y="46.4" width="10" height="30" rx="1.5" fill="#3E5C8A"/><rect x="734" y="35.4" width="8" height="41" rx="1.5" fill="#7A4B2A"/><rect x="743" y="36.4" width="10" height="40" rx="1.5" fill="#8C2F39"/><rect x="753" y="37.4" width="10" height="39" rx="1.5" fill="#E8DDC4"/><rect x="502" y="76.4" width="272" height="5" fill="#6B4429"/><rect x="504" y="92.8" width="16" height="34" rx="1.5" fill="#C8102E"/><rect x="522" y="98.8" width="8" height="28" rx="1.5" fill="#8C2F39"/><rect x="532" y="92.8" width="10" height="34" rx="1.5" fill="#D9B86C"/><rect x="542" y="93.8" width="10" height="33" rx="1.5" fill="#D9B86C"/><rect x="553" y="97.8" width="8" height="29" rx="1.5" fill="#D9B86C"/><rect x="563" y="95.8" width="8" height="31" rx="1.5" fill="#E8DDC4"/><rect x="573" y="85.8" width="14" height="41" rx="1.5" fill="#5B6B3A"/><rect x="588" y="92.8" width="14" height="34" rx="1.5" fill="#B5651D"/><rect x="603" y="97.8" width="8" height="29" rx="1.5" fill="#2F5D50"/><rect x="612" y="84.8" width="14" height="42" rx="1.5" fill="#E8DDC4"/><rect x="627" y="92.8" width="14" height="34" rx="1.5" fill="#B5651D"/><rect x="642" y="82.8" width="8" height="44" rx="1.5" fill="#8C2F39"/><rect x="651" y="86.8" width="8" height="40" rx="1.5" fill="#B5651D"/><rect x="660" y="88.8" width="16" height="38" rx="1.5" fill="#3E5C8A"/><rect x="677" y="93.8" width="8" height="33" rx="1.5" fill="#7A4B2A"/><rect x="686" y="87.8" width="12" height="39" rx="1.5" fill="#7A4B2A"/><rect x="699" y="92.8" width="14" height="34" rx="1.5" fill="#D9B86C"/><rect x="713" y="89.8" width="12" height="37" rx="1.5" fill="#1F3A78"/><rect x="725" y="87.8" width="8" height="39" rx="1.5" fill="#B5651D"/><rect x="733" y="90.8" width="10" height="36" rx="1.5" fill="#3E5C8A"/><rect x="744" y="86.8" width="10" height="40" rx="1.5" fill="#B5651D"/><rect x="755" y="96.8" width="16" height="30" rx="1.5" fill="#7A4B2A"/><rect x="502" y="126.8" width="272" height="5" fill="#6B4429"/><rect x="504" y="146.2" width="10" height="31" rx="1.5" fill="#7A4B2A"/><rect x="514" y="146.2" width="8" height="31" rx="1.5" fill="#2F5D50"/><rect x="523" y="137.2" width="14" height="40" rx="1.5" fill="#5B6B3A"/><rect x="537" y="137.2" width="10" height="40" rx="1.5" fill="#8C2F39"/><rect x="547" y="141.2" width="12" height="36" rx="1.5" fill="#3E5C8A"/><rect x="560" y="133.2" width="16" height="44" rx="1.5" fill="#7A4B2A"/><rect x="576" y="147.2" width="14" height="30" rx="1.5" fill="#5B6B3A"/><rect x="590" y="144.2" width="14" height="33" rx="1.5" fill="#7A4B2A"/><rect x="606" y="134.2" width="10" height="43" rx="1.5" fill="#5B6B3A"/><rect x="616" y="134.2" width="14" height="43" rx="1.5" fill="#7A4B2A"/><rect x="631" y="137.2" width="16" height="40" rx="1.5" fill="#B5651D"/><rect x="648" y="133.2" width="12" height="44" rx="1.5" fill="#3E5C8A"/><rect x="662" y="140.2" width="12" height="37" rx="1.5" fill="#3E5C8A"/><rect x="674" y="142.2" width="8" height="35" rx="1.5" fill="#B5651D"/><rect x="682" y="136.2" width="10" height="41" rx="1.5" fill="#7A4B2A"/><rect x="692" y="137.2" width="12" height="40" rx="1.5" fill="#8C2F39"/><rect x="705" y="142.2" width="8" height="35" rx="1.5" fill="#7A4B2A"/><rect x="715" y="142.2" width="12" height="35" rx="1.5" fill="#8C2F39"/><rect x="727" y="145.2" width="14" height="32" rx="1.5" fill="#2F5D50"/><rect x="741" y="136.2" width="8" height="41" rx="1.5" fill="#1F3A78"/><rect x="749" y="148.2" width="10" height="29" rx="1.5" fill="#E8DDC4"/><rect x="760" y="138.2" width="8" height="39" rx="1.5" fill="#1F3A78"/><rect x="502" y="177.2" width="272" height="5" fill="#6B4429"/><rect x="504" y="185.6" width="14" height="42" rx="1.5" fill="#B5651D"/><rect x="519" y="186.6" width="16" height="41" rx="1.5" fill="#E8DDC4"/><rect x="536" y="195.6" width="12" height="32" rx="1.5" fill="#2F5D50"/><rect x="550" y="183.6" width="8" height="44" rx="1.5" fill="#3E5C8A"/><rect x="559" y="191.6" width="12" height="36" rx="1.5" fill="#B5651D"/><rect x="572" y="192.6" width="12" height="35" rx="1.5" fill="#2F5D50"/><rect x="585" y="193.6" width="16" height="34" rx="1.5" fill="#8C2F39"/><rect x="601" y="191.6" width="8" height="36" rx="1.5" fill="#3E5C8A"/><rect x="611" y="198.6" width="8" height="29" rx="1.5" fill="#C8102E"/><rect x="620" y="191.6" width="16" height="36" rx="1.5" fill="#C8102E"/><rect x="636" y="192.6" width="10" height="35" rx="1.5" fill="#E8DDC4"/><rect x="648" y="188.6" width="14" height="39" rx="1.5" fill="#2F5D50"/><rect x="663" y="184.6" width="12" height="43" rx="1.5" fill="#D9B86C"/><rect x="675" y="185.6" width="8" height="42" rx="1.5" fill="#B5651D"/><rect x="684" y="186.6" width="14" height="41" rx="1.5" fill="#3E5C8A"/><rect x="700" y="188.6" width="10" height="39" rx="1.5" fill="#D9B86C"/><rect x="711" y="194.6" width="12" height="33" rx="1.5" fill="#7A4B2A"/><rect x="724" y="196.6" width="16" height="31" rx="1.5" fill="#1F3A78"/><rect x="741" y="197.6" width="8" height="30" rx="1.5" fill="#7A4B2A"/><rect x="751" y="190.6" width="14" height="37" rx="1.5" fill="#8C2F39"/><rect x="502" y="227.6" width="272" height="5" fill="#6B4429"/><rect x="504" y="244.0" width="12" height="34" rx="1.5" fill="#B5651D"/><rect x="516" y="235.0" width="12" height="43" rx="1.5" fill="#E8DDC4"/><rect x="529" y="243.0" width="10" height="35" rx="1.5" fill="#E8DDC4"/><rect x="540" y="247.0" width="12" height="31" rx="1.5" fill="#E8DDC4"/><rect x="554" y="242.0" width="16" height="36" rx="1.5" fill="#1F3A78"/><rect x="571" y="240.0" width="14" height="38" rx="1.5" fill="#2F5D50"/><rect x="587" y="243.0" width="16" height="35" rx="1.5" fill="#C8102E"/><rect x="604" y="250.0" width="12" height="28" rx="1.5" fill="#E8DDC4"/><rect x="618" y="238.0" width="16" height="40" rx="1.5" fill="#2F5D50"/><rect x="635" y="246.0" width="14" height="32" rx="1.5" fill="#B5651D"/><rect x="650" y="248.0" width="10" height="30" rx="1.5" fill="#1F3A78"/><rect x="661" y="243.0" width="8" height="35" rx="1.5" fill="#5B6B3A"/><rect x="669" y="245.0" width="16" height="33" rx="1.5" fill="#B5651D"/><rect x="686" y="237.0" width="8" height="41" rx="1.5" fill="#C8102E"/><rect x="695" y="248.0" width="16" height="30" rx="1.5" fill="#E8DDC4"/><rect x="711" y="247.0" width="12" height="31" rx="1.5" fill="#E8DDC4"/><rect x="723" y="246.0" width="8" height="32" rx="1.5" fill="#C8102E"/><rect x="733" y="243.0" width="10" height="35" rx="1.5" fill="#1F3A78"/><rect x="744" y="238.0" width="14" height="40" rx="1.5" fill="#E8DDC4"/><rect x="759" y="246.0" width="12" height="32" rx="1.5" fill="#1F3A78"/><rect x="502" y="278.0" width="272" height="5" fill="#6B4429"/><path d="M330 286V128a70 70 0 0 1 140 0V286Z" fill="url(#bw)" stroke="#4A2E1B" stroke-width="8"/><path d="M400 58V286M330 150H470" stroke="#4A2E1B" stroke-width="5"/><rect x="0" y="286" width="800" height="14" fill="#2B1A10"/><path d="M250 286L300 40" stroke="#B5651D" stroke-width="5" stroke-linecap="round"/><path d="M276 286L326 40" stroke="#B5651D" stroke-width="5" stroke-linecap="round"/><g stroke="#B5651D" stroke-width="4"><path d="M258 250L284 250M264 214L290 214M270 178L296 178M276 142L302 142M283 106L309 106M289 70L315 70"/></g></svg>
+        <img src="img/Biblioteca.jpg" alt="Biblioteca de estilo inglés con estanterías de madera" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:auto 0 0 0;height:60%;background:linear-gradient(to top,rgba(12,26,54,.82),transparent)"></div>
+        <span style="position:absolute;left:18px;bottom:16px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.94);font-size:12.5px;font-weight:700;color:#12254A">Lunes a viernes · 9:00 a 12:30 hs</span>
+      </div>
+
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Leer en inglés</span>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.4vw,32px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance">Una biblioteca abierta a toda la comunidad</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">Recibimos a alumnos, profesores y personal de la Asociación, a socios y al público en general. Hay un lugar en nuestras salas de lectura para cada tipo de lector.</p>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">¿Quién puede usarla?</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 11px;border-radius:999px;background:#CFE3FF;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Socios alumnos</span>
+          <span style="color:#3D4C6B;font-size:14.5px;line-height:1.55">Si cursás en la Asociación, accedés a todos los servicios presentando el recibo de pago de la cuota de enseñanza.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 11px;border-radius:999px;background:#FFE9A8;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Socios estudiantes</span>
+          <span style="color:#3D4C6B;font-size:14.5px;line-height:1.55">Para estudiantes de profesorados o carreras terciarias de inglés (Facultad de Lenguas), con carnet societario actualizado.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 11px;border-radius:999px;background:#FBD5DB;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Socios activos</span>
+          <span style="color:#3D4C6B;font-size:14.5px;line-height:1.55">Para profesionales del inglés, hablantes nativos y personas que disfrutan leer en inglés, con carnet societario actualizado.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 11px;border-radius:999px;background:#D9F0E6;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Público general</span>
+          <span style="color:#3D4C6B;font-size:14.5px;line-height:1.55">Podés ingresar a las salas de lectura presentando tu documento de identidad.</span>
+        </div>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">Cómo asociarte</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #DCE3EF;border-radius:18px;padding:20px;min-width:0">
+          <span class="cb-step" style="flex:0 0 auto">1</span>
+          <span style="color:#3D4C6B;font-size:14.5px;line-height:1.55">Completá el formulario de solicitud con la firma de dos socios que te presenten. Podés retirarlo en Recepción.</span>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #DCE3EF;border-radius:18px;padding:20px;min-width:0">
+          <span class="cb-step" style="flex:0 0 auto">2</span>
+          <span style="color:#3D4C6B;font-size:14.5px;line-height:1.55">Una vez aprobada la solicitud, presentá dos fotos carnet y abonás la cuota. El acceso a los servicios es inmediato.</span>
+        </div>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">Cuotas</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <div style="background:#12254A;color:#fff;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9FB4DC;font-weight:700">Socio estudiante</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:800;line-height:1.1">$500 <span style="font-size:14px;font-weight:500;color:#C9D5EA">/ mes</span></span>
+        </div>
+        <div style="background:#12254A;color:#fff;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:4px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9FB4DC;font-weight:700">Socio activo</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:800;line-height:1.1">$1.000 <span style="font-size:14px;font-weight:500;color:#C9D5EA">/ mes</span></span>
+        </div>
+      </div>
+      <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#3D4C6B"><strong style="color:#12254A">Dónde pagar:</strong> en la Oficina Administrativa, de lunes a viernes de 8 a 12 y de 15 a 20 hs, y los sábados de 8:30 a 12:30 hs.</p>
+
+      <div class="cb-actions">
+        <a class="cb-btn" href="#contacto" data-abrir-contacto style="display:inline-grid;place-items:center">Consultar por la biblioteca</a>
+        <button type="button" class="cb-btn cb-btn--ghost" data-cerrar-biblioteca>Cerrar</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
+     MODAL: BENEFICIOS
+     Imágenes: poné tus archivos en img/Beneficios/ con estos nombres
+       empleados.jpg · instituciones-amigas.jpg · descuento.jpg
+     (si falta alguno se ve un fondo de color con un ícono).
+     Para agregar un beneficio: copiá un bloque <article class="ev-card">.
+     ===================================================================== -->
+<dialog id="dlg-beneficios" class="cb-modal" aria-labelledby="ben-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="ben-titulo">Beneficios</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-beneficios aria-label="Cerrar beneficios">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Ventajas para vos</span>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.4vw,32px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance">Ser parte de la Asociación tiene sus beneficios</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">Preparamos beneficios para quienes forman parte de nuestra comunidad: el equipo de la Asociación y los alumnos que cursan con nosotros.</p>
+      </div>
+
+      <div class="ev-grid" style="margin-top:22px">
+
+        <article class="ev-card">
+          <div class="ev-media" style="position:relative;aspect-ratio:1/1;background:#CFE3FF">
+            <span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#12254A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".55"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.2c2.4 0 4 1.6 4 4"/></svg></span>
+            <img loading="lazy" src="img/Beneficios/empleados.jpg" alt="Beneficios para empleados de Cultura Británica" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="ev-body">
+            <span class="ev-tag" style="background:#CFE3FF">Equipo</span>
+            <h3 class="ev-title">Empleados de Cultura Británica</h3>
+            <p class="ev-text">Beneficios pensados para quienes forman parte del equipo de la Asociación.</p>
+          </div>
+        </article>
+
+        <article class="ev-card">
+          <div class="ev-media" style="position:relative;aspect-ratio:1/1;background:#FFE9A8">
+            <span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#12254A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".55"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/></svg></span>
+            <img loading="lazy" src="img/Beneficios/instituciones-amigas.jpg" alt="Afiche de Instituciones Amigas" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="ev-body">
+            <span class="ev-tag" style="background:#FFE9A8">Alumnos</span>
+            <h3 class="ev-title">Socios alumnos de Cultura Británica</h3>
+            <p class="ev-text">Ventajas para quienes cursan con nosotros, y los acuerdos con Instituciones Amigas del afiche.</p>
+          </div>
+        </article>
+
+        <article class="ev-card">
+          <div class="ev-media" style="position:relative;aspect-ratio:1/1;background:#FBD5DB">
+            <span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#12254A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".55"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.4"/><circle cx="17" cy="17" r="2.4"/></svg></span>
+            <img loading="lazy" src="img/Beneficios/descuento.jpg" alt="Descuento para la comunidad de la Asociación" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="ev-body">
+            <span class="ev-tag" style="background:#FBD5DB">Descuento</span>
+            <h3 class="ev-title">Descuento para la comunidad</h3>
+            <p class="ev-text">Mirá el detalle en la imagen y consultá cómo aplicarlo.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <p style="margin:22px 0 0;font-size:14.5px;line-height:1.6;color:#3D4C6B">¿Dudas sobre las condiciones vigentes? Consultalas en Recepción o escribinos.</p>
+
+      <div class="cb-actions">
+        <a class="cb-btn" href="#contacto" data-abrir-contacto style="display:inline-grid;place-items:center">Consultar beneficios</a>
+        <button type="button" class="cb-btn cb-btn--ghost" data-cerrar-beneficios>Cerrar</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
+     MODAL: CONVENIOS
+     La lista está en el <script> (const CONVENIOS). Para agregar uno:
+     ["Nombre", "nota opcional", 1 si es NUEVO] dentro de su porcentaje.
+     ===================================================================== -->
+<dialog id="dlg-convenios" class="cb-modal" aria-labelledby="cv-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="cv-titulo">Convenios</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-convenios aria-label="Cerrar convenios">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Descuentos vigentes</span>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.4vw,32px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance">Convenios con instituciones y empresas</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">Si formás parte de alguna de estas organizaciones, tenés un descuento sobre la cuota mensual de los cursos anuales, regulares o intensivos.</p>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#3D4C6B;background:#FFF6D6;border:1px solid #F1DD97;border-radius:14px;padding:12px 16px">Los cursos especiales (cuatrimestrales, TOEFL e IELTS) solo tienen descuento cuando se indica expresamente.</p>
+      </div>
+
+      <div style="margin-top:22px;position:relative">
+        <input type="search" id="cv-buscar" class="cv-search" placeholder="Buscá tu institución o empresa" aria-label="Buscar convenio" autocomplete="off">
+      </div>
+      <div id="cv-filtros" role="group" aria-label="Filtrar por descuento" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px"></div>
+      <p id="cv-contador" role="status" aria-live="polite" style="margin:14px 0 0;font-size:13.5px;color:#5B6781"></p>
+
+      <div id="cv-lista"></div>
+
+      <div class="cb-actions">
+        <a class="cb-btn" href="#contacto" data-abrir-contacto style="display:inline-grid;place-items:center">Consultar mi convenio</a>
+        <button type="button" class="cb-btn cb-btn--ghost" data-cerrar-convenios>Cerrar</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
+     MODAL: EXAMEN IELTS  (foto opcional: img/Examenes/ielts.jpg)
+     ===================================================================== -->
+<dialog id="dlg-ielts" class="cb-modal" aria-labelledby="ie-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="ie-titulo">Examen IELTS</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-ielts aria-label="Cerrar Examen IELTS">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <div style="position:relative;margin-top:20px;aspect-ratio:16/6;min-height:150px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#12254A 0%,#1F3A78 100%)">
+        <svg aria-hidden="true" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%"><rect x="372" y="0" width="56" height="300" fill="#fff" opacity=".07"/><rect x="0" y="122" width="800" height="56" fill="#fff" opacity=".07"/><rect x="386" y="0" width="28" height="300" fill="#C8102E" opacity=".35"/><rect x="0" y="136" width="800" height="28" fill="#C8102E" opacity=".35"/></svg>
+        <div style="position:absolute;left:clamp(18px,4vw,36px);bottom:clamp(16px,3vw,28px);color:#fff">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(34px,7vw,60px);font-weight:800;line-height:1;letter-spacing:-.02em">IELTS</div>
+          <div style="margin-top:6px;font-size:clamp(13px,1.8vw,16px);color:#C9D5EA">Exámenes internacionales</div>
+        </div>
+        <img src="img/Examenes/ielts.jpg" alt="Preparación para el examen IELTS" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      </div>
+
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Vivir, estudiar y trabajar en el exterior</span>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.4vw,32px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance">Un examen reconocido en todo el mundo</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">El IELTS mide tu capacidad de comunicarte en inglés. Es uno de los exámenes de inglés más elegidos del planeta y lo aceptan instituciones gubernamentales, académicas y laborales.</p>
+      </div>
+
+      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+        <div style="background:#12254A;color:#fff;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:2px;min-width:0">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800;line-height:1.1">+2 millones</span>
+          <span style="font-size:13.5px;line-height:1.4;color:#C9D5EA">de exámenes tomados cada año</span>
+        </div>
+        <div style="background:#12254A;color:#fff;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:2px;min-width:0">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800;line-height:1.1">+10.000</span>
+          <span style="font-size:13.5px;line-height:1.4;color:#C9D5EA">organizaciones lo aceptan</span>
+        </div>
+        <div style="background:#12254A;color:#fff;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:2px;min-width:0">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800;line-height:1.1">140</span>
+          <span style="font-size:13.5px;line-height:1.4;color:#C9D5EA">países lo reconocen</span>
+        </div>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">Qué evalúa</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:18px;min-width:0">
+          <span style="flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:#CFE3FF;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px" aria-hidden="true">L</span>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:15.5px">Listening</span><span style="color:#3D4C6B;font-size:14px;line-height:1.5">Comprensión auditiva.</span></span>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:18px;min-width:0">
+          <span style="flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:#FFE9A8;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px" aria-hidden="true">R</span>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:15.5px">Reading</span><span style="color:#3D4C6B;font-size:14px;line-height:1.5">Comprensión lectora.</span></span>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:18px;min-width:0">
+          <span style="flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:#FBD5DB;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px" aria-hidden="true">W</span>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:15.5px">Writing</span><span style="color:#3D4C6B;font-size:14px;line-height:1.5">Expresión escrita.</span></span>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:18px;min-width:0">
+          <span style="flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:#D9F0E6;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px" aria-hidden="true">S</span>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:15.5px">Speaking</span><span style="color:#3D4C6B;font-size:14px;line-height:1.5">Expresión oral.</span></span>
+        </div>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">Curso de preparación</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <div style="background:#fff;border:1px solid #DCE3EF;border-radius:18px;padding:18px"><span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;font-weight:700">Duración</span><span style="font-size:17px;font-weight:700">4 meses</span></div>
+        <div style="background:#fff;border:1px solid #DCE3EF;border-radius:18px;padding:18px"><span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;font-weight:700">Cursadas</span><span style="font-size:17px;font-weight:700">Marzo a junio o agosto a noviembre</span></div>
+        <div style="background:#fff;border:1px solid #DCE3EF;border-radius:18px;padding:18px"><span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;font-weight:700">Días y horario</span><span style="font-size:17px;font-weight:700">Lunes y miércoles, 19:15 a 21:15 hs</span></div>
+        <div style="background:#fff;border:1px solid #DCE3EF;border-radius:18px;padding:18px"><span style="display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;font-weight:700">Modalidad</span><span style="font-size:17px;font-weight:700">Virtual</span></div>
+      </div>
+      <p style="margin:14px 0 0;font-size:14px;line-height:1.6;color:#5B6781">Las fechas de inicio y los horarios pueden variar en cada ciclo: consultalos al inscribirte. Más información oficial del examen en <a href="http://www.ielts.org.ar/" target="_blank" rel="noopener" style="color:#C8102E;font-weight:700;text-decoration:underline">ielts.org.ar</a>.</p>
+
+      <div class="cb-actions">
+        <a class="cb-btn" href="#preinscripcion" data-abrir-form style="display:inline-grid;place-items:center">Pre-inscripción 2027</a>
+        <a class="cb-btn cb-btn--ghost" href="#contacto" data-abrir-contacto style="display:inline-grid;place-items:center">Consultar</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
+     MODAL: UNIVERSIDAD DE CAMBRIDGE  (foto opcional: img/Examenes/cambridge.jpg)
+     ===================================================================== -->
+<dialog id="dlg-cambridge" class="cb-modal" aria-labelledby="ca-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="ca-titulo">Universidad de Cambridge</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-cambridge aria-label="Cerrar Universidad de Cambridge">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <div style="position:relative;margin-top:20px;aspect-ratio:16/6;min-height:150px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#12254A 0%,#1F3A78 100%)">
+        <svg aria-hidden="true" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%"><rect x="372" y="0" width="56" height="300" fill="#fff" opacity=".07"/><rect x="0" y="122" width="800" height="56" fill="#fff" opacity=".07"/><rect x="386" y="0" width="28" height="300" fill="#C8102E" opacity=".35"/><rect x="0" y="136" width="800" height="28" fill="#C8102E" opacity=".35"/></svg>
+        <div style="position:absolute;left:clamp(18px,4vw,36px);bottom:clamp(16px,3vw,28px);color:#fff">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(34px,7vw,60px);font-weight:800;line-height:1;letter-spacing:-.02em">Cambridge</div>
+          <div style="margin-top:6px;font-size:clamp(13px,1.8vw,16px);color:#C9D5EA">Exámenes FCE · CAE · CPE</div>
+        </div>
+        <img src="img/Examenes/cambridge.jpg" alt="Preparación para los exámenes de Cambridge" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      </div>
+
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Certificá tu inglés</span>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.4vw,32px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance">Preparate para los exámenes de la Universidad de Cambridge</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">Te acompañamos en cada nivel con cursos presenciales y virtuales, en Casa Central y en el Anexo Cerro de Las Rosas.</p>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">Exámenes</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 12px;border-radius:999px;background:#CFE3FF;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800">FCE</span>
+          <span style="font-weight:700;font-size:15.5px;line-height:1.3">First Certificate in English</span>
+          <span style="color:#3D4C6B;font-size:14px">Primer escalón de la preparación.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 12px;border-radius:999px;background:#FFE9A8;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800">CAE</span>
+          <span style="font-weight:700;font-size:15.5px;line-height:1.3">Certificate in Advanced English</span>
+          <span style="color:#3D4C6B;font-size:14px">Nivel avanzado.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0">
+          <span style="align-self:flex-start;padding:4px 12px;border-radius:999px;background:#FBD5DB;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800">CPE</span>
+          <span style="font-weight:700;font-size:15.5px;line-height:1.3">Certificate of Proficiency in English</span>
+          <span style="color:#3D4C6B;font-size:14px">El nivel más alto.</span>
+        </div>
+      </div>
+
+      <h3 style="margin:32px 0 14px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,2.4vw,24px);line-height:1.1">Sedes y horarios</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+        <div style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:22px 22px 10px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;font-weight:700">Sede principal</span>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700;line-height:1.1;margin-top:4px">Casa Central</div>
+          <div style="font-size:14px;color:#3D4C6B;margin:4px 0 14px">Av. Hipólito Yrigoyen 496, Nueva Córdoba</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #DCE3EF">
+            <span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="padding:3px 10px;border-radius:999px;background:#CFE3FF;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Presencial</span><span style="font-weight:700;font-size:15px">FCE</span></span>
+            <span style="font-size:14px;color:#3D4C6B">Lunes y miércoles, 17:00 a 18:40 hs</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #DCE3EF">
+            <span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="padding:3px 10px;border-radius:999px;background:#E6DFF5;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Virtual</span><span style="font-weight:700;font-size:15px">FCE</span></span>
+            <span style="font-size:14px;color:#3D4C6B">Martes y jueves, 20:00 a 21:40 hs</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #DCE3EF">
+            <span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="padding:3px 10px;border-radius:999px;background:#E6DFF5;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Virtual</span><span style="font-weight:700;font-size:15px">CAE</span></span>
+            <span style="font-size:14px;color:#3D4C6B">Lunes y miércoles, 19:00 a 21:30 hs</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #DCE3EF">
+            <span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="padding:3px 10px;border-radius:999px;background:#E6DFF5;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Virtual</span><span style="font-weight:700;font-size:15px">CPE</span></span>
+            <span style="font-size:14px;color:#3D4C6B">Miércoles y viernes, 19:00 a 21:40 hs</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:22px 22px 10px;min-width:0;align-self:start">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;font-weight:700">Anexo</span>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700;line-height:1.1;margin-top:4px">Cerro de Las Rosas</div>
+          <div style="font-size:14px;color:#3D4C6B;margin:4px 0 14px">José Esteban Bustos 1658, Cerro</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #DCE3EF">
+            <span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="padding:3px 10px;border-radius:999px;background:#CFE3FF;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Presencial</span><span style="font-weight:700;font-size:15px">FCE</span></span>
+            <span style="font-size:14px;color:#3D4C6B">Lunes y miércoles, 18:30 a 20:10 hs</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 0 0;font-size:14px;line-height:1.6;color:#5B6781">Los horarios pueden variar en cada ciclo: consultá fechas de inicio e inscripción antes de reservar tu lugar.</p>
+
+      <div class="cb-actions">
+        <a class="cb-btn" href="#preinscripcion" data-abrir-form style="display:inline-grid;place-items:center">Pre-inscripción 2027</a>
+        <a class="cb-btn cb-btn--ghost" href="#contacto" data-abrir-contacto style="display:inline-grid;place-items:center">Consultar</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
+     MODAL: CONTACTO (datos institucionales + formulario)
+     ===================================================================== -->
+<dialog id="dlg-contacto" class="cb-modal" aria-labelledby="ct-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="ct-titulo">Contacto</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-contacto aria-label="Cerrar contacto">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+
+      <p style="margin:20px 0 0;font-size:16.5px;line-height:1.65;color:#3D4C6B">Visitanos en cualquiera de nuestras dos sedes o escribinos con el formulario y te respondemos a la brevedad.</p>
+
+      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+        <div style="background:#12254A;color:#fff;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9FB4DC;font-weight:700">Sede principal</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;line-height:1.1">Casa Central</span>
+          <span style="color:#C9D5EA;font-size:15px;line-height:1.5">Av. Hipólito Yrigoyen 496, Nueva Córdoba</span>
+          <span style="font-size:15px;line-height:1.7;margin-top:6px">
+            <a href="tel:+543514691000" style="text-decoration:underline">0351 469-1000</a> ·
+            <a href="tel:+543514682285" style="text-decoration:underline">0351 468-2285</a><br>
+            <a href="mailto:info@culturabritanicacba.org.ar" style="text-decoration:underline;overflow-wrap:anywhere">info@culturabritanicacba.org.ar</a>
+          </span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;font-weight:700">Anexo</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;line-height:1.1">Cerro de Las Rosas</span>
+          <span style="color:#3D4C6B;font-size:15px;line-height:1.5">José Esteban Bustos 1658, Cerro</span>
+          <span style="font-size:15px;line-height:1.7;margin-top:6px;color:#12254A">
+            <a href="tel:+543518990418" style="text-decoration:underline">0351 899-0418</a><br>
+            <a href="mailto:anexocerro@culturabritanicacba.org.ar" style="text-decoration:underline;overflow-wrap:anywhere">anexocerro@culturabritanicacba.org.ar</a>
+          </span>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE CONTACTO
+           Para conectarlo: reemplazá TU_FORM_ID en CONTACTO_FORMSPREE_URL (script al final). -->
+      <form class="cb-form" id="contacto-form" method="post" action="https://formspree.io/f/TU_FORM_ID">
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
+
+        <fieldset>
+          <legend><span class="cb-step" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3V6Zm0 0l9 7 9-7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span> Escribinos</legend>
+          <p class="cb-note" style="margin-top:0">Los campos marcados con <span class="cb-req">*</span> son obligatorios.</p>
+          <div class="cb-grid">
+            <div class="cb-field">
+              <label for="ct-nombre">Nombre y apellido <span class="cb-req">*</span></label>
+              <input type="text" id="ct-nombre" name="nombre" autocomplete="name" required>
+            </div>
+            <div class="cb-field">
+              <label for="ct-email">Correo electrónico <span class="cb-req">*</span></label>
+              <input type="email" id="ct-email" name="email" autocomplete="email" required>
+            </div>
+            <div class="cb-field">
+              <label for="ct-tel">Teléfono</label>
+              <input type="tel" id="ct-tel" name="telefono" autocomplete="tel">
+              <p class="cb-hint">Agregar característica.</p>
+            </div>
+            <div class="cb-field">
+              <label for="ct-motivo">Motivo de la consulta <span class="cb-req">*</span></label>
+              <select id="ct-motivo" name="motivo" required>
+                <option value="" selected disabled>Seleccionar…</option>
+                <option>Información sobre cursos</option>
+                <option>Exámenes internacionales (Cambridge / IELTS)</option>
+                <option>Capacitación para empresas</option>
+                <option>Pagos y administración</option>
+                <option>Biblioteca</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="cb-field cb-full">
+              <label for="ct-mensaje">Mensaje <span class="cb-req">*</span></label>
+              <textarea id="ct-mensaje" name="mensaje" required></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="cb-hp" aria-hidden="true">
+          <label>No completar <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="cb-actions">
+          <button type="submit" class="cb-btn">Enviar mensaje</button>
+          <button type="button" class="cb-btn cb-btn--ghost" data-cerrar-contacto>Cancelar</button>
+        </div>
+        <div class="cb-msg" id="ct-error" role="alert"></div>
+      </form>
+
+      <div class="cb-ok" id="ct-ok" role="status" aria-live="polite">
+        <div class="cb-ok__icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M7 17.5l7 7L27 10" stroke="#14532D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Gracias por escribirnos. Te vamos a responder a la brevedad.</p>
+        <button type="button" class="cb-btn" data-cerrar-contacto>Volver al sitio</button>
+      </div>
+
+    </div>
+  </div>
+</dialog>
+
+<!-- =====================================================================
      MODAL: EVENTOS
      Para agregar un evento: copiá un bloque <article class="ev-card"> y
      cambiale imagen, título y texto. Para sacar uno, borrá su bloque.
@@ -600,6 +1105,76 @@ body.cb-lock{overflow:hidden}
   </div>
 </dialog>
 
+<!-- =====================================================================
+     MODAL: INSTITUCIONAL
+     ===================================================================== -->
+<dialog id="dlg-institucional" class="cb-modal" aria-labelledby="inst-titulo">
+  <div class="cb-modal__panel">
+
+    <div class="cb-modal__head">
+      <h2 class="cb-modal__title" id="inst-titulo">Institucional</h2>
+      <button type="button" class="cb-modal__close" data-cerrar-institucional aria-label="Cerrar institucional">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cb-modal__body">
+      <div style="padding-top:20px;display:flex;flex-direction:column;gap:14px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E">Más de 85 años en Córdoba</span>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.4vw,34px);line-height:1.1;letter-spacing:-.01em;text-wrap:balance">Una asociación civil con raíces en Córdoba desde 1940</h3>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">Somos una asociación civil dedicada a la enseñanza del idioma inglés. Nacimos en 1940 en la ciudad de Córdoba y desde entonces nos guía una misma meta: ofrecer servicios de excelencia en educación, cultura e idiomas.</p>
+        <p style="margin:0;font-size:16.5px;line-height:1.65;color:#3D4C6B">En estos 85 años de trayectoria llevamos adelante esa misión de cuatro maneras:</p>
+      </div>
+
+      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px">
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="width:40px;height:40px;border-radius:12px;background:#DDE7F7;display:grid;place-items:center" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v10H9l-5 4V5Z" stroke="#12254A" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;line-height:1.2">Enseñanza del inglés</span>
+          <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Cursos para todas las edades y objetivos.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="width:40px;height:40px;border-radius:12px;background:#FFE9A8;display:grid;place-items:center" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M2 9l10-5 10 5-10 5L2 9Z M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5" stroke="#12254A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;line-height:1.2">Formación docente</span>
+          <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Capacitación y perfeccionamiento para profesores de inglés.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="width:40px;height:40px;border-radius:12px;background:#CFE3FF;display:grid;place-items:center" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4V5ZM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6V5Z" stroke="#12254A" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;line-height:1.2">Biblioteca</span>
+          <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Una biblioteca completa, con colecciones especializadas.</span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="width:40px;height:40px;border-radius:12px;background:#FBD5DB;display:grid;place-items:center" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" stroke="#12254A" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#12254A" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;line-height:1.2">Actividades culturales</span>
+          <span style="color:#3D4C6B;font-size:14px;line-height:1.5">Un amplio programa propio y auspiciado.</span>
+        </div>
+      </div>
+
+      <h3 style="margin:36px 0 16px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(21px,2.6vw,26px);line-height:1.1">Dos sedes para recibirte</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+        <div style="background:#12254A;color:#fff;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9FB4DC;font-weight:700">Sede principal</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;line-height:1.1">Casa Central</span>
+          <span style="color:#C9D5EA;font-size:15px;line-height:1.5">Av. Hipólito Yrigoyen 496, Nueva Córdoba</span>
+          <span style="font-size:15px;line-height:1.7;margin-top:6px">
+            <a href="tel:+543514691000" style="text-decoration:underline">0351 469-1000</a> ·
+            <a href="tel:+543514682285" style="text-decoration:underline">0351 468-2285</a><br>
+            <a href="mailto:info@culturabritanicacba.org.ar" style="text-decoration:underline;overflow-wrap:anywhere">info@culturabritanicacba.org.ar</a>
+          </span>
+        </div>
+        <div style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C8102E;font-weight:700">Anexo</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;line-height:1.1">Cerro de Las Rosas</span>
+          <span style="color:#3D4C6B;font-size:15px;line-height:1.5">José Esteban Bustos 1658, Cerro</span>
+          <span style="font-size:15px;line-height:1.7;margin-top:6px;color:#12254A">
+            <a href="tel:+543518990418" style="text-decoration:underline">0351 899-0418</a><br>
+            <a href="mailto:anexocerro@culturabritanicacba.org.ar" style="text-decoration:underline;overflow-wrap:anywhere">anexocerro@culturabritanicacba.org.ar</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <script>
 /* =====================================================================
    CURSOS (listado con filtros)
@@ -622,6 +1197,7 @@ const cursos=[
  ['Examen IELTS','Exámenes Internacionales','examen-ielts/','img/Cursos/ielts.jfif'],
  ['Capacitación In Company','Empresas','capacitacion-in-company/','img/Cursos/Incompany.jfif']
 ];
+const modales={'universidad-de-cambridge/':'cambridge','examen-ielts/':'ielts'}; // estos dos cursos abren su modal
 const categorias=['Todos','Niños','Jóvenes','Adultos','Exámenes Internacionales','Cursos Especiales','Empresas'];
 /* ---- Imágenes de los cursos ----
    Por defecto busca: img/cursos/<nombre>.jpg  (ej: img/cursos/kinder.jpg)
@@ -639,7 +1215,7 @@ function pintar(){
     return `<button type="button" data-cat="${c}" aria-pressed="${on}" style="min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid #12254A;background:${on?'#12254A':'#fff'};color:${on?'#fff':'#12254A'};font-size:14px;font-weight:600;cursor:pointer">${c}</button>`}).join('');
   const lista=cursos.filter(c=>activa==='Todos'||c[1]===activa);
   $n.textContent=lista.length+(lista.length===1?' curso':' cursos');
-  $c.innerHTML=lista.map(c=>`<a class="card" href="${base+c[2]}" style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0"><div style="position:relative;height:170px;background:${tints[c[1]]};overflow:hidden"><img src="${imgCurso(c)}" alt="${c[0]}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><span style="position:absolute;left:14px;bottom:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.92);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#12254A">${c[1]}</span></div><div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:12px;flex:1"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:21px;font-weight:700;line-height:1.15">${c[0]}</span><span style="margin-top:auto;font-size:14px;font-weight:700;color:#C8102E">Ver detalles →</span></div></a>`).join('');
+  $c.innerHTML=lista.map(c=>`<a class="card" href="${modales[c[2]]?'#'+modales[c[2]]:base+c[2]}" ${modales[c[2]]?'data-abrir-'+modales[c[2]]:''} style="background:#F4F6FA;border:1px solid #DCE3EF;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0"><div style="position:relative;height:170px;background:${tints[c[1]]};overflow:hidden"><img src="${imgCurso(c)}" alt="${c[0]}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><span style="position:absolute;left:14px;bottom:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.92);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#12254A">${c[1]}</span></div><div style="padding:20px 22px 22px;display:flex;flex-direction:column;gap:12px;flex:1"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:21px;font-weight:700;line-height:1.15">${c[0]}</span><span style="margin-top:auto;font-size:14px;font-weight:700;color:#C8102E">Ver detalles →</span></div></a>`).join('');
 }
 $f.addEventListener('click',e=>{const b=e.target.closest('button');if(b){activa=b.dataset.cat;pintar();}});
 pintar();
@@ -762,6 +1338,209 @@ const FORMSPREE_URL = 'https://formspree.io/f/TU_FORM_ID';
   if (location.hash === HASH) abrir();
   window.addEventListener('hashchange', function () { if (location.hash === HASH) abrir(); });
 })();
+
+/* =====================================================================
+   MODAL INSTITUCIONAL
+   ===================================================================== */
+(function () {
+  const dlg  = document.getElementById('dlg-institucional');
+  const HASH = '#institucional';
+
+  function abrir() {
+    if (dlg.open) return;
+    dlg.showModal();
+    dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    document.body.classList.add('cb-lock');
+    history.replaceState(null, '', HASH);
+  }
+  function cerrar() { if (dlg.open) dlg.close(); }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-abrir-institucional]')) { e.preventDefault(); abrir(); return; }
+    if (e.target.closest('[data-cerrar-institucional]')) { cerrar(); return; }
+    if (e.target === dlg) cerrar();
+  });
+
+  dlg.addEventListener('close', function () {
+    document.body.classList.remove('cb-lock');
+    if (location.hash === HASH) history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  if (location.hash === HASH) abrir();
+  window.addEventListener('hashchange', function () { if (location.hash === HASH) abrir(); });
+})();
+
+/* =====================================================================
+   MODAL DE CONTACTO + ENVÍO CON FORMSPREE
+   ===================================================================== */
+
+// Pegá acá la URL de Formspree del formulario de contacto:
+//    https://formspree.io/f/xxxxxxxx
+const CONTACTO_FORMSPREE_URL = 'https://formspree.io/f/TU_FORM_ID';
+
+(function () {
+  const dlg  = document.getElementById('dlg-contacto');
+  const form = document.getElementById('contacto-form');
+  const ok   = document.getElementById('ct-ok');
+  const err  = document.getElementById('ct-error');
+  const btn  = form.querySelector('button[type="submit"]');
+  const HASH = '#contacto';
+
+  form.action = CONTACTO_FORMSPREE_URL;
+
+  function abrir() {
+    if (dlg.open) return;
+    ok.classList.remove('is-on');
+    form.hidden = false;
+    err.className = 'cb-msg';
+    dlg.showModal();
+    dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    document.body.classList.add('cb-lock');
+    history.replaceState(null, '', HASH);
+  }
+  function cerrar() { if (dlg.open) dlg.close(); }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-abrir-contacto]')) { e.preventDefault(); abrir(); return; }
+    if (e.target.closest('[data-cerrar-contacto]')) { cerrar(); return; }
+    if (e.target === dlg) cerrar();
+  });
+
+  dlg.addEventListener('close', function () {
+    document.body.classList.remove('cb-lock');
+    if (location.hash === HASH) history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  if (location.hash === HASH) abrir();
+  window.addEventListener('hashchange', function () { if (location.hash === HASH) abrir(); });
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    if (CONTACTO_FORMSPREE_URL.includes('TU_FORM_ID')) {
+      err.textContent = 'Falta conectar Formspree: reemplazá TU_FORM_ID en CONTACTO_FORMSPREE_URL (script al final del archivo).';
+      err.className = 'cb-msg is-err';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    err.className = 'cb-msg';
+
+    try {
+      const r = await fetch(CONTACTO_FORMSPREE_URL, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!r.ok) {
+        let msg = 'No pudimos enviar el mensaje. Intentá nuevamente.';
+        try { const j = await r.json(); if (j.errors) msg = j.errors.map(x => x.message).join(' '); } catch (_) {}
+        throw new Error(msg);
+      }
+      form.reset();
+      form.hidden = true;
+      ok.classList.add('is-on');
+      dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    } catch (ex) {
+      err.textContent = ex.message || 'No pudimos enviar el mensaje. Revisá tu conexión e intentá nuevamente.';
+      err.className = 'cb-msg is-err';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar mensaje';
+    }
+  });
+})();
+
+/* =====================================================================
+   MODALES DE BIBLIOTECA Y BENEFICIOS
+   ===================================================================== */
+function crearModal(id, hash, abrirAttr, cerrarAttr) {
+  const dlg = document.getElementById(id);
+  function abrir() {
+    if (dlg.open) return;
+    dlg.showModal();
+    dlg.querySelector('.cb-modal__body').scrollTop = 0;
+    document.body.classList.add('cb-lock');
+    history.replaceState(null, '', hash);
+  }
+  function cerrar() { if (dlg.open) dlg.close(); }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[' + abrirAttr + ']')) { e.preventDefault(); abrir(); return; }
+    if (e.target.closest('[' + cerrarAttr + ']')) { cerrar(); return; }
+    if (e.target === dlg) cerrar();
+  });
+  dlg.addEventListener('close', function () {
+    document.body.classList.remove('cb-lock');
+    if (location.hash === hash) history.replaceState(null, '', location.pathname + location.search);
+  });
+  if (location.hash === hash) abrir();
+  window.addEventListener('hashchange', function () { if (location.hash === hash) abrir(); });
+}
+crearModal('dlg-biblioteca', '#biblioteca', 'data-abrir-biblioteca', 'data-cerrar-biblioteca');
+crearModal('dlg-beneficios', '#beneficios', 'data-abrir-beneficios', 'data-cerrar-beneficios');
+
+// Si se abre "Contacto" desde dentro de otro modal, ese modal se cierra primero
+document.addEventListener('click', function (e) {
+  const d = e.target.closest('dialog');
+  if (d && d.open && e.target.closest('[data-abrir-contacto],[data-abrir-form]')) d.close();
+}, true);
+
+/* =====================================================================
+   MODAL DE CONVENIOS (lista filtrable)
+   ===================================================================== */
+// [porcentaje, [ [nombre, nota (opcional), 1 = NUEVO (opcional)], ... ]]
+const CONVENIOS = [[50, [["Alianza Francesa", "1 empleado"], ["Centro Cultural España-Córdoba", "1 empleado"], ["Goethe Institut Córdoba", "1 empleado"], ["Instituto Italiano de Cultura", "1 empleado"]]], [30, [["Colegio Monserrat"], ["Padres del Colegio San José"], ["Padres del Colegio Nuestra Señora del Huerto"]]], [25, [["OMINT", "empleados"], ["Universidad Empresarial Siglo 21", "empleados"]]], [20, [["AEGIS Argentina"], ["AFeP (Asociación Federal de Psicomotricistas)"], ["Aguas Cordobesas", "empleados"], ["Asociación Mutual Federal de empleados de las Administraciones Fiscales Públicas"], ["Asociación Mutualista del Docente de la Provincia de Córdoba"], ["ASOCIART ART", "empleados"], ["Astori Construcciones"], ["Astori Estructuras"], ["Avant S.A."], ["CELIA Escuela Integral Gastronómica"], ["Círculo Médico de Córdoba"], ["Círculo Odontológico de Córdoba"], ["Claro", "empleados"], ["Clínica CREO"], ["Club Carusso", "requiere código de descuento"], ["Colegio de Abogados"], ["Colegio de Arquitectos"], ["Colegio de Escribanos"], ["Colegio de Ingenieros Civiles"], ["Colegio de Martilleros y Corredores Públicos de Córdoba"], ["Colegio de Nutricionistas"], ["Colegio de Psicólogos de la Provincia de Córdoba"], ["Colegio de Traductores de la Provincia de Córdoba"], ["Colegio Universitario de Periodismo"], ["Consejo Profesional de Ciencias de la Información de la Provincia de Córdoba"], ["Consejo Profesional de Ciencias Informáticas de la Provincia de Córdoba"], ["Colegio Profesional de Corredores Públicos Inmobiliarios de la Provincia de Córdoba"], ["Consejo de Médicos"], ["Consejo Profesional de Ciencias Económicas (CPCE)"], ["CorbisGlobal"], ["CuponStar"], ["ECCO", "empleados"], ["F.A.M.A.F."], ["FADEA"], ["Federación de Colegios de Abogados de la Provincia de Córdoba"], ["Federada Salud", "empleados"], ["FIAT / IVECO", "empleados"], ["Fundación CREO"], ["Fundación Educar"], ["Gendarmería Nacional"], ["General Mills – La Salteña S.A."], ["Grupo Cargo"], ["Grupo Consultores de Empresas"], ["Grupo FIAT / IVECO"], ["Grupo GEA", "Incluye: AOS SRL, GEA SA, Asociación Mutual DOC, GEA Salud SRL, Medicina y Salud SRL, Armenhui SRL, OFTAL, Asistencia de Salud SRL, E-IAN SRL, Clínica Privada Sarmiento SA, ACYSO y M&S", 1], ["Grupo San Cristóbal", "Incluye: Soc. Mutual Seguros Generales, Seguro de Retiro, Servicios Financieros, Caja Mutual, Viajes y Turismo, ASOCIART"], ["Harriage y Asociados"], ["IES Siglo XXI"], ["INGAR S.A."], ["Institución Cervantes de Fundación Universitaria Cervantes", "empleados"], ["INVAP SE"], ["Jockey Club Córdoba"], ["Kunan S.A."], ["M. Tagle (H) y Cía"], ["Magistrados y Funcionarios del Poder Judicial de la Nación, Sec. Córdoba (nacional y provincial)"], ["Magistrados y Funcionarios del Poder Judicial de la Provincia de Córdoba"], ["Magneti Marelli"], ["Market Line / Multivoice"], ["Motcor S.A."], ["Mundo Maipú", "empleados"], ["OSDE", "empleados"], ["Parque del Sol"], ["Pintecord"], ["Policía de la Provincia de Córdoba"], ["Policía Federal"], ["Regam Pilay"], ["Renault Argentina", "empleados"], ["RuralPower"], ["SalesPower"], ["Santander Río", "empleados"], ["Stefanini"], ["Swiss Medical", "empleados"], ["Taller Technologies"], ["Tarjeta Naranja", "empleados"], ["Techno Health SRL", "", 1], ["Telemercado SRL"], ["Tomadato"], ["Tubos Trans Electric S.A."], ["Unión Cordobesa de Rugby"], ["Universidad Empresarial Siglo 21", "alumnos"], ["Vates S.A."], ["Volkswagen Argentina S.A."], ["Vulcano S.A."]]], [15, [["Disco", "empleados"], ["Easy", "empleados"], ["OMINT", "afiliados"], ["OSIM"], ["Universidad Empresarial Siglo 21", "empleados · sobre el valor total del curso cuatrimestral"], ["Vea", "empleados"]]], [10, [["Club Carusso", "requiere código de descuento · sobre el valor total de cursos cuatrimestrales, TOEFL o IELTS"], ["CuponStar"], ["ECCO", "afiliados"], ["Estudiantes universitarios", "universidad pública o privada"], ["Federada Salud", "afiliados"], ["INGAR S.A."], ["Institución Cervantes de Fundación Universitaria Cervantes"], ["Librería del Palacio"], ["OSDE", "afiliados"], ["Swiss Medical", "afiliados"], ["Universidad Empresarial Siglo 21", "empleados · sobre el valor total del curso cuatrimestral"]]]];
+
+(function () {
+  const colores = {50:'#D9F0E6',30:'#CFE3FF',25:'#E6DFF5',20:'#FFE9A8',15:'#FBD5DB',10:'#DDE7F7'};
+  const $q = document.getElementById('cv-buscar'),
+        $f = document.getElementById('cv-filtros'),
+        $n = document.getElementById('cv-contador'),
+        $l = document.getElementById('cv-lista');
+  let nivel = 'todos';
+
+  const esc  = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const norm = t => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+  function pintar() {
+    const q = norm($q.value.trim());
+    $f.innerHTML = ['todos'].concat(CONVENIOS.map(g => g[0])).map(v =>
+      `<button type="button" class="cv-chip" data-nivel="${v}" aria-pressed="${String(v) === String(nivel)}">${v === 'todos' ? 'Todos' : v + '%'}</button>`).join('');
+
+    let total = 0;
+    const html = CONVENIOS.filter(g => nivel === 'todos' || String(g[0]) === String(nivel)).map(g => {
+      const items = g[1].filter(i => !q || norm(i[0] + ' ' + (i[1] || '')).includes(q));
+      if (!items.length) return '';
+      total += items.length;
+      return `<section style="margin-top:28px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <span style="padding:6px 16px;border-radius:999px;background:${colores[g[0]] || '#DDE7F7'};font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:800;line-height:1.1">${g[0]}%</span>
+          <span style="font-size:14px;color:#5B6781">de descuento · ${items.length} ${items.length === 1 ? 'convenio' : 'convenios'}</span>
+        </div>
+        <div class="cv-grid">${items.map(i =>
+          `<div class="cv-item">${i[2] ? '<span class="cv-new">NUEVO</span>' : ''}<span>${esc(i[0])}</span>${i[1] ? `<span class="cv-note">${esc(i[1])}</span>` : ''}</div>`).join('')}</div>
+      </section>`;
+    }).join('');
+
+    $l.innerHTML = html || '<p style="margin:28px 0 0;font-size:15px;color:#3D4C6B">No encontramos convenios con esa búsqueda. Si tu institución no figura, escribinos y lo consultamos.</p>';
+    $n.textContent = total + (total === 1 ? ' convenio' : ' convenios');
+  }
+
+  $q.addEventListener('input', pintar);
+  $f.addEventListener('click', e => {
+    const b = e.target.closest('button[data-nivel]');
+    if (b) { nivel = b.dataset.nivel; pintar(); }
+  });
+  document.getElementById('dlg-convenios').addEventListener('close', () => { $q.value = ''; nivel = 'todos'; pintar(); });
+  pintar();
+})();
+
+crearModal('dlg-convenios', '#convenios', 'data-abrir-convenios', 'data-cerrar-convenios');
+
+crearModal('dlg-ielts', '#ielts', 'data-abrir-ielts', 'data-cerrar-ielts');
+crearModal('dlg-cambridge', '#cambridge', 'data-abrir-cambridge', 'data-cerrar-cambridge');
 </script>
 </body>
 </html>
